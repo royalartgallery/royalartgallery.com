@@ -98,17 +98,16 @@
 
         <!-- સર્ચ બાર -->
         <div class="max-w-xl mx-auto mb-10 relative">
-            <input type="text" id="searchInput" placeholder="પ્રોડક્ટ શોધો... (દા.ત. Clock, Painting)" class="w-full pl-12 pr-4 py-3 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-royal-orange focus:border-transparent shadow-sm text-lg">
+            <input type="text" id="searchInput" placeholder="પ્રોડક્ટ શોધો... (દા.ત. Code, Couple, Artefact)" class="w-full pl-12 pr-4 py-3 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-royal-orange focus:border-transparent shadow-sm text-lg">
             <i class="fas fa-search absolute left-5 top-4 text-gray-400 text-lg"></i>
         </div>
 
         <!-- કેટેગરી ફિલ્ટર્સ (તમારા કાર્ડ મુજબ) -->
         <div class="flex flex-wrap justify-center gap-3 mb-12" id="categoryFilters">
             <button class="filter-btn active bg-royal-dark text-white px-5 py-2 rounded-full text-sm font-semibold shadow" data-filter="all">All (બધું)</button>
-            <button class="filter-btn bg-white text-gray-700 border border-gray-300 px-5 py-2 rounded-full text-sm font-semibold hover:bg-gray-100 transition" data-filter="Wall Art">Wall Art</button>
-            <button class="filter-btn bg-white text-gray-700 border border-gray-300 px-5 py-2 rounded-full text-sm font-semibold hover:bg-gray-100 transition" data-filter="Wall Clocks">Wall Clocks</button>
             <button class="filter-btn bg-white text-gray-700 border border-gray-300 px-5 py-2 rounded-full text-sm font-semibold hover:bg-gray-100 transition" data-filter="Artefact">Artefact</button>
-            <button class="filter-btn bg-white text-gray-700 border border-gray-300 px-5 py-2 rounded-full text-sm font-semibold hover:bg-gray-100 transition" data-filter="Metal Art">Metal Art</button>
+            <button class="filter-btn bg-white text-gray-700 border border-gray-300 px-5 py-2 rounded-full text-sm font-semibold hover:bg-gray-100 transition" data-filter="Gift Articles">Gift Articles</button>
+            <button class="filter-btn bg-white text-gray-700 border border-gray-300 px-5 py-2 rounded-full text-sm font-semibold hover:bg-gray-100 transition" data-filter="Pot">Pot</button>
             <button class="filter-btn bg-white text-gray-700 border border-gray-300 px-5 py-2 rounded-full text-sm font-semibold hover:bg-gray-100 transition" data-filter="Murti">Murti</button>
         </div>
 
@@ -135,7 +134,6 @@
                     </div>
                     <h3 class="text-2xl font-serif font-bold mb-4">રૂબરૂ મુલાકાત માટે એપોઇન્ટમેન્ટ</h3>
                     <p class="text-gray-600 mb-6">અમારી ગેલેરીની રૂબરૂ મુલાકાત લેવા અને આર્ટિફેક્ટ્સ જોવા માટે અગાઉથી એપોઇન્ટમેન્ટ બુક કરો.</p>
-                    <!-- Google Form લિંક અથવા WhatsApp બુકિંગ -->
                     <a href="https://wa.me/917607671571?text=Hello,%20I%20want%20to%20book%20an%20appointment%20to%20visit%20Royal%20Art%20Gallery." target="_blank" class="inline-block bg-royal-dark text-white font-bold py-3 px-6 rounded hover:bg-gray-800 transition">
                         <i class="fab fa-whatsapp mr-2"></i> WhatsApp પર બુક કરો
                     </a>
@@ -149,10 +147,8 @@
                     <h3 class="text-2xl font-serif font-bold mb-4">ઓનલાઇન પેમેન્ટ</h3>
                     <p class="text-gray-600 mb-4">ઓર્ડર કન્ફર્મ કરવા માટે નીચે આપેલ QR કોડ સ્કેન કરીને સુરક્ષિત પેમેન્ટ કરો.</p>
                     
-                    <!-- તમારો પેમેન્ટ QR કોડ અહીં મુકવો (હાલ ડેમો ઈમેજ છે) -->
                     <div class="bg-gray-50 p-4 inline-block rounded-xl border-2 border-dashed border-gray-300">
-                        <!-- જ્યારે તમારી પાસે તમારો QR હોય, ત્યારે 'src' માં તેનું નામ નાખી દેજો, દા.ત. src="my_qr_code.jpg" -->
-                        <img src=" alt="Payment QR Code" class="w-40 h-40 mx-auto" onerror="this.src='https://via.placeholder.com/150?text=QR+Code'">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg" alt="Payment QR Code" class="w-40 h-40 mx-auto" onerror="this.src='https://via.placeholder.com/150?text=QR+Code'">
                         <p class="text-sm font-bold text-gray-800 mt-2">UPI Accepted Here</p>
                     </div>
                 </div>
@@ -179,7 +175,7 @@
                 </div>
             </div>
 
-            <!-- સંપર્ક વિગતો (તમારા કાર્ડ મુજબ) -->
+            <!-- સંપર્ક વિગતો -->
             <div>
                 <h4 class="text-lg font-bold text-white mb-4 border-b border-gray-700 pb-2">સંપર્ક કરો (Contact Us)</h4>
                 <ul class="space-y-3">
@@ -189,13 +185,11 @@
                     </li>
                     <li class="flex items-center">
                         <i class="fas fa-envelope mr-3 text-royal-orange"></i>
-                        <!-- મેં કાર્ડ પરથી ઈમેલનો અંદાજ લગાવ્યો છે -->
                         <span>royalart2024@gmail.com</span>
                     </li>
                     <li class="flex items-center">
                         <i class="fas fa-phone-alt mr-3 text-royal-orange"></i>
-                        <!-- તમારો ફોન નંબર અહીં નાખવો -->
-                        <span>+91 7607671571</span>
+                        <span>+91 76076 71571</span>
                     </li>
                 </ul>
             </div>
@@ -223,49 +217,119 @@
             menu.classList.toggle('hidden');
         });
 
-        // તમારો WhatsApp નંબર (આ નંબર પર ઓર્ડરના મેસેજ આવશે)
-        const myWhatsAppNumber = "7607671571"; 
+        // તમારો સાચો WhatsApp નંબર 
+        const myWhatsAppNumber = "917607671571"; 
 
-        // પ્રોડક્ટ્સનો ડેટાબેઝ (ડેમો માટે)
-        // જ્યારે તમારી પાસે અસલી ફોટા હોય, ત્યારે 'image' ની લિંક બદલી નાખવી.
+        // ૫ કેટેલોગમાંથી કાઢવામાં આવેલી ૫૯ બેસ્ટ પ્રોડક્ટ્સ
         const productsData = [
-            { id: 1, name: "Premium Vintage Wall Clock", category: "Wall Clocks", price: "₹2,500", image: "https://images.unsplash.com/photo-1563861826100-9cb868fdbe1c?w=500&auto=format&fit=crop&q=60" },
-            { id: 2, name: "Abstract Metal Wall Art", category: "Metal Art", price: "₹4,200", image: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=500&auto=format&fit=crop&q=60" },
-            { id: 3, name: "Gautam Buddha Murti (Resin)", category: "Murti", price: "₹1,800", image: "https://images.unsplash.com/photo-1601314002592-b8734bca6604?w=500&auto=format&fit=crop&q=60" },
-            { id: 4, name: "Designer Flower Vase Pot", category: "Pot", price: "₹950", image: "https://images.unsplash.com/photo-1580237072617-771c3ecc4a24?w=500&auto=format&fit=crop&q=60" },
-            { id: 5, name: "Handpainted Canvas Art", category: "Painting", price: "₹3,500", image: "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=500&auto=format&fit=crop&q=60" },
-            { id: 6, name: "Luxury Desktop Artefact", category: "Artefact", price: "₹1,200", image: "https://images.unsplash.com/photo-1544457070-4cd773b4d71e?w=500&auto=format&fit=crop&q=60" },
-            { id: 7, name: "Modern Big Wall Clock", category: "Wall Clocks", price: "₹3,100", image: "https://images.unsplash.com/photo-1506466010722-395aa2bef877?w=500&auto=format&fit=crop&q=60" },
-            { id: 8, name: "Golden Leaves Metal Art", category: "Wall Art", price: "₹2,800", image: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=500&auto=format&fit=crop&q=60" }
+            // --- CATALOG 1 ---
+            { id: 1, code: "80869", name: "Meditation Lady Artefact", category: "Artefact", price: "₹4,000", size: "24X13X26 cm" },
+            { id: 2, code: "80877", name: "Moon Meditation Artefact", category: "Artefact", price: "₹5,100", size: "29X11X23 cm" },
+            { id: 3, code: "GBP 2501 5 B", name: "Silver Yoga Figure", category: "Artefact", price: "₹1,560", size: "15X12X26 cm" },
+            { id: 4, code: "GBP 2501 15", name: "Elephant Head Artefact", category: "Artefact", price: "₹2,100", size: "14X9X31 cm" },
+            { id: 5, code: "GBP 2501 30 A", name: "Astronaut on Rocket", category: "Gift Articles", price: "₹1,920", size: "13X9X30 cm" },
+            { id: 6, code: "GBP 2501 31 A", name: "Astronaut on Moon", category: "Gift Articles", price: "₹750", size: "12X5X12 cm" },
+            { id: 7, code: "GBP 2501 32 A", name: "Standing Astronaut", category: "Gift Articles", price: "₹1,620", size: "10X8X27 cm" },
+            { id: 8, code: "GBP 2505 2 A", name: "Elephant with Crystal", category: "Artefact", price: "₹4,080", size: "20X10X13 cm" },
+            { id: 9, code: "RT 105 A", name: "Premium Elephant Pair", category: "Artefact", price: "₹1,750", size: "3X6X31 cm" },
+            { id: 10, code: "RT 108 A", name: "Deer Family Set", category: "Artefact", price: "₹2,350", size: "10X27X16 cm" },
+            { id: 11, code: "RT 111 B", name: "Geometric Elephant", category: "Artefact", price: "₹2,250", size: "9X5X23 cm" },
+            { id: 12, code: "RT 118 A", name: "Astronaut with Balloon", category: "Gift Articles", price: "₹950", size: "5X9X18 cm" },
+            { id: 13, code: "RT 119 A", name: "Wireframe Planter", category: "Pot", price: "₹1,200", size: "12X12X26 cm" },
+            { id: 14, code: "RT 120 A", name: "Wireframe Planter Round", category: "Pot", price: "₹1,250", size: "8X24X21 cm" },
+            { id: 15, code: "RT-101 C", name: "Abstract Elephant", category: "Artefact", price: "₹1,250", size: "5X27X12 cm" },
+
+            // --- CATALOG 2 ---
+            { id: 16, code: "GBP 2501 2 A", name: "Angel Wings Artefact", category: "Artefact", price: "₹1,500", size: "18X10X30 cm" },
+            { id: 17, code: "GBP 2501 4 A", name: "Twisted Stand Crystal", category: "Artefact", price: "₹1,500", size: "8X8X27 cm" },
+            { id: 18, code: "GBP 2501 6 A", name: "Parrot Pair Artefact", category: "Artefact", price: "₹1,680", size: "13X7X30 cm" },
+            { id: 19, code: "GBP 2501 8 A", name: "Abstract Curve Crystal", category: "Artefact", price: "₹1,560", size: "7X8X31 cm" },
+            { id: 20, code: "GBP 2503 2 A", name: "Lion Crown Showpiece", category: "Artefact", price: "₹900", size: "8X11X20 cm" },
+            { id: 21, code: "GBP 2503 3 A", name: "Deer Head Artefact", category: "Artefact", price: "₹1,750", size: "10X8X35 cm" },
+            { id: 22, code: "GBP 2505 1 A", name: "Deer Pair with Crystal", category: "Artefact", price: "₹3,480", size: "20X8X33 cm" },
+            { id: 23, code: "GBP 2505 7", name: "Buddha Bust", category: "Murti", price: "₹780", size: "7X7X21 cm" },
+            { id: 24, code: "GBP 4191 A", name: "Hands with Crystal", category: "Artefact", price: "₹2,250", size: "10X7X30 cm" },
+            { id: 25, code: "GBP 5037", name: "Standing Deer Pair", category: "Artefact", price: "₹2,750", size: "13X9X25 cm" },
+            { id: 26, code: "RT 99 A", name: "Musician Artefact", category: "Artefact", price: "₹1,350", size: "10X7X28 cm" },
+            { id: 27, code: "RT 100 A", name: "Guitarist Artefact", category: "Artefact", price: "₹1,350", size: "9X7X28 cm" },
+            { id: 28, code: "RT 109 A", name: "Abstract Dancer", category: "Artefact", price: "₹1,450", size: "11X7X30 cm" },
+            { id: 29, code: "RT-104 A", name: "Leopard / Panther Artefact", category: "Artefact", price: "₹1,300", size: "10X26X21 cm" },
+
+            // --- CATALOG 3 ---
+            { id: 30, code: "GBP 2503 8 A", name: "Couple Sitting Abstract", category: "Gift Articles", price: "₹1,150", size: "16X7X21 cm" },
+            { id: 31, code: "GBP 2511 14 A", name: "Boy & Girl Figure", category: "Gift Articles", price: "₹780", size: "8X7X21 cm" },
+            { id: 32, code: "GBP 2511 1 A", name: "Wedding Couple", category: "Gift Articles", price: "₹1,080", size: "13X5X19 cm" },
+            { id: 33, code: "GBP 2511 2 A", name: "Couple Sitting (Dangling Legs)", category: "Gift Articles", price: "₹840", size: "5X6X12 cm" },
+            { id: 34, code: "GBP 2511 6", name: "Couple with Watering Can", category: "Gift Articles", price: "₹1,080", size: "17X6X17 cm" },
+            { id: 35, code: "GBP 2511 9", name: "Couple on Blackboard", category: "Gift Articles", price: "₹1,440", size: "14X9X20 cm" },
+            { id: 36, code: "GBP 2511 13 A", name: "Couple on Moon Lamp", category: "Gift Articles", price: "₹1,140", size: "14X7X20 cm" },
+            { id: 37, code: "GBP 2511 17 A", name: "Couple Sitting Close", category: "Gift Articles", price: "₹960", size: "17X5X13 cm" },
+            { id: 38, code: "GBP 2511 24 AB", name: "Old Couple Rocking Chair", category: "Gift Articles", price: "₹900", size: "7X11X15 cm" },
+            { id: 39, code: "GBP 2886", name: "Family Showpiece", category: "Gift Articles", price: "₹1,750", size: "23X13X16 cm" },
+            { id: 40, code: "RT 94 A", name: "Couple with Tray", category: "Gift Articles", price: "₹1,750", size: "10X8X24 cm" },
+            { id: 41, code: "RT 95 A", name: "Couple on Bicycle", category: "Gift Articles", price: "₹2,000", size: "9X27X30 cm" },
+            { id: 42, code: "RT 96 A", name: "Couple on Swing", category: "Gift Articles", price: "₹1,450", size: "14X14X24 cm" },
+
+            // --- CATALOG 4 ---
+            { id: 43, code: "GBP 2501 18 A", name: "Girl with Flowers", category: "Artefact", price: "₹2,940", size: "21X10X35 cm" },
+            { id: 44, code: "GBP 2501 20 A", name: "Girl holding Cone", category: "Artefact", price: "₹2,280", size: "15X10X25 cm" },
+            { id: 45, code: "GBP 2501 25 A", name: "Girl on Tissue Box", category: "Pot", price: "₹3,000", size: "23X15X24 cm" },
+            { id: 46, code: "GBP 2501 26 C", name: "Girl on Crescent Bowl", category: "Artefact", price: "₹2,880", size: "23X15X29 cm" },
+            { id: 47, code: "GBP 2501 28 A", name: "Girl with Bunny Ears", category: "Artefact", price: "₹1,500", size: "9X6X29 cm" },
+            { id: 48, code: "GBP 2505 6 A", name: "Fairy Showpiece", category: "Artefact", price: "₹1,680", size: "12X8X23 cm" },
+            { id: 49, code: "GBP 2511 7 A", name: "Girl on Sofa Lamp", category: "Artefact", price: "₹1,080", size: "10X6X15 cm" },
+            { id: 50, code: "RT 97 A", name: "Ballerina Figurine", category: "Artefact", price: "₹1,750", size: "13X18X31 cm" },
+            { id: 51, code: "RT 98 A", name: "Ballerina Bending", category: "Artefact", price: "₹1,850", size: "17X11X36 cm" },
+            { id: 52, code: "RT 117", name: "Girl Blowing Bubble (Tray)", category: "Artefact", price: "₹2,150", size: "10X27X29 cm" },
+
+            // --- CATALOG 5 ---
+            { id: 53, code: "GBP 2501 17 A", name: "Bear with Tray", category: "Artefact", price: "₹2,280", size: "16X9X22 cm" },
+            { id: 54, code: "GBP 2501 21 B", name: "Rabbit with Balloon", category: "Artefact", price: "₹1,380", size: "9X11X32 cm" },
+            { id: 55, code: "GBP 2501 24", name: "Panda with Tray", category: "Artefact", price: "₹1,350", size: "8X13X14 cm" },
+            { id: 56, code: "GBP 2501 27 A", name: "Cat Crown Planter", category: "Pot", price: "₹2,280", size: "10X29X23 cm" },
+            { id: 57, code: "GBP 2501 33 A", name: "Bear on Tree", category: "Artefact", price: "₹1,680", size: "16X18X27 cm" },
+            { id: 58, code: "GBP 2504 1 A", name: "Leaf with Crystal", category: "Artefact", price: "₹440", size: "8X7X18 cm" },
+            { id: 59, code: "GBP 2504 9", name: "Teapot Cage Planter", category: "Pot", price: "₹840", size: "27X17 cm" },
+            { id: 60, code: "GBP 2504 11", name: "Teardrop Planter", category: "Pot", price: "₹840", size: "15X8X24 cm" }
         ];
 
         const productGrid = document.getElementById('productGrid');
         const noProductMsg = document.getElementById('noProductMsg');
 
-        // પ્રોડક્ટ્સ બતાવવાનું ફંક્શન
         function displayProducts(products) {
-            productGrid.innerHTML = ''; // પહેલા ગ્રીડ ખાલી કરો
+            productGrid.innerHTML = ''; 
             
             if (products.length === 0) {
                 noProductMsg.classList.remove('hidden');
             } else {
                 noProductMsg.classList.add('hidden');
                 products.forEach(product => {
-                    // WhatsApp નો મેસેજ કેવો જશે તે નક્કી કરો
-                    const waMessage = encodeURIComponent(`નમસ્તે, મારે આ પ્રોડક્ટ ખરીદવી છે:\n\n*Product:* ${product.name}\n*Category:* ${product.category}\n*Price:* ${product.price}\n\nશું આ ઉપલબ્ધ છે?`);
+                    
+                    // --- AUTOMATIC IMAGE NAMING LOGIC ---
+                    // આ કોડ તમારા "Code" પરથી જાતે જ ફોટાનું નામ ગોતી લેશે.
+                    // ઉદાહરણ: "RT 105 A" ને "rt105a.jpg" બનાવી દેશે.
+                    const imageName = product.code.toLowerCase().replace(/[^a-z0-9]/g, '') + '.jpg';
+                    // ------------------------------------
+
+                    const sizeText = product.size ? `\n*Size:* ${product.size}` : '';
+                    const waMessage = encodeURIComponent(`નમસ્તે, મારે આ પ્રોડક્ટ ખરીદવી છે:\n\n*Code:* ${product.code}\n*Product:* ${product.name}\n*Category:* ${product.category}${sizeText}\n*Price:* ${product.price}\n\nશું આ ઉપલબ્ધ છે?`);
                     const waLink = `https://wa.me/${myWhatsAppNumber}?text=${waMessage}`;
+
+                    const sizeHtml = product.size ? `<p class="text-sm text-gray-500 mb-2"><i class="fas fa-ruler-combined mr-1 text-royal-orange"></i> Size: ${product.size}</p>` : '';
 
                     const card = `
                         <div class="product-card bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 flex flex-col h-full">
                             <div class="h-64 overflow-hidden relative">
                                 <span class="absolute top-2 left-2 bg-royal-dark text-white text-xs font-bold px-2 py-1 rounded z-10">${product.category}</span>
-                                <img src="${product.image}" alt="${product.name}" class="product-img w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/500?text=No+Image'">
+                                <img src="${imageName}" alt="${product.name}" class="product-img w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/500?text=Upload+${imageName}'">
                             </div>
                             <div class="p-5 flex flex-col flex-grow">
-                                <h3 class="text-lg font-bold text-gray-800 mb-2">${product.name}</h3>
+                                <p class="text-xs text-gray-400 font-bold mb-1 border-b border-gray-100 pb-1">CODE: ${product.code}</p>
+                                <h3 class="text-lg font-bold text-gray-800 mb-2 mt-2">${product.name}</h3>
+                                ${sizeHtml}
                                 <p class="text-royal-orange font-bold text-xl mb-4 mt-auto">${product.price}</p>
                                 <a href="${waLink}" target="_blank" class="w-full block text-center bg-green-500 hover:bg-green-600 text-white font-bold py-2 rounded transition">
-                                    <i class="fab fa-whatsapp mr-1"></i> Buy Now (ખરીદો)
+                                    <i class="fab fa-whatsapp mr-1"></i> Buy Now
                                 </a>
                             </div>
                         </div>
@@ -282,7 +346,6 @@
         const filterBtns = document.querySelectorAll('.filter-btn');
         filterBtns.forEach(btn => {
             btn.addEventListener('click', () => {
-                // એક્ટિવ બટનનો કલર બદલો
                 filterBtns.forEach(b => {
                     b.classList.remove('bg-royal-dark', 'text-white');
                     b.classList.add('bg-white', 'text-gray-700');
@@ -290,7 +353,6 @@
                 btn.classList.remove('bg-white', 'text-gray-700');
                 btn.classList.add('bg-royal-dark', 'text-white');
 
-                // ફિલ્ટર કરો
                 const category = btn.getAttribute('data-filter');
                 if (category === 'all') {
                     displayProducts(productsData);
@@ -301,14 +363,16 @@
             });
         });
 
-        // સર્ચ બાર લોજીક
+        // સર્ચ બાર લોજીક (Code અથવા નામથી શોધવા માટે)
         const searchInput = document.getElementById('searchInput');
         searchInput.addEventListener('input', (e) => {
-            const searchTerm = e.target.value.toLowerCase();
-            const filtered = productsData.filter(p => 
-                p.name.toLowerCase().includes(searchTerm) || 
-                p.category.toLowerCase().includes(searchTerm)
-            );
+            const searchTerm = e.target.value.toLowerCase().replace(/[^a-z0-9]/g, ''); // સ્પેસ કાઢીને સર્ચ કરશે
+            const filtered = productsData.filter(p => {
+                const codeMatch = p.code.toLowerCase().replace(/[^a-z0-9]/g, '').includes(searchTerm);
+                const nameMatch = p.name.toLowerCase().replace(/[^a-z0-9]/g, '').includes(searchTerm);
+                const catMatch = p.category.toLowerCase().replace(/[^a-z0-9]/g, '').includes(searchTerm);
+                return codeMatch || nameMatch || catMatch;
+            });
             displayProducts(filtered);
         });
     </script>
