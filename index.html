@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Royal Art Gallery | Design Your Story</title>
+    <!-- Tailwind CSS ફોર સ્ટાઇલિંગ -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome આઇકોન્સ માટે -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Noto+Sans+Gujarati:wght@400;600&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'royal-dark': '#1a1a1a',
+                        'royal-gold': '#d4af37',
+                        'royal-orange': '#e65c00'
+                    },
+                    fontFamily: {
+                        'serif': ['Playfair Display', 'serif'],
+                        'sans': ['Noto Sans Gujarati', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* સ્મૂથ સ્ક્રોલિંગ માટે */
+        html { scroll-behavior: smooth; }
+        .product-card:hover .product-img { transform: scale(1.05); }
+        .product-img { transition: transform 0.3s ease; }
+    </style>
+</head>
+<body class="font-sans bg-gray-50 text-gray-800">
+
+    <!-- નેવિગેશન બાર (હેડર) -->
+    <nav class="bg-royal-dark text-white sticky top-0 z-50 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- લોગો -->
+                <div class="flex-shrink-0 flex flex-col justify-center">
+                    <h1 class="font-serif text-2xl md:text-3xl font-bold tracking-wider text-royal-orange">
+                        ROYAL <span class="text-white">ART GALLERY</span>
+                    </h1>
+                    <span class="text-xs text-gray-300 italic">Design Your Story</span>
+                </div>
+
+                <!-- ડેસ્કટોપ મેનુ -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#home" class="hover:text-royal-orange transition">હોમ</a>
+                    <a href="#products" class="hover:text-royal-orange transition">પ્રોડક્ટ્સ</a>
+                    <a href="#services" class="hover:text-royal-orange transition">એપોઇન્ટમેન્ટ & પેમેન્ટ</a>
+                    <a href="#contact" class="hover:text-royal-orange transition">સંપર્ક</a>
+                </div>
+
+                <!-- મોબાઈલ મેનુ બટન -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-white hover:text-royal-orange focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- મોબાઈલ ડ્રોપડાઉન -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-900 pb-4 px-4">
+            <a href="#home" class="block py-2 hover:text-royal-orange">હોમ</a>
+            <a href="#products" class="block py-2 hover:text-royal-orange">પ્રોડક્ટ્સ</a>
+            <a href="#services" class="block py-2 hover:text-royal-orange">એપોઇન્ટમેન્ટ & પેમેન્ટ</a>
+            <a href="#contact" class="block py-2 hover:text-royal-orange">સંપર્ક</a>
+        </div>
+    </nav>
+
+    <!-- હીરો સેક્શન (મુખ્ય બેનર) -->
+    <section id="home" class="relative bg-royal-dark text-white overflow-hidden">
+        <div class="absolute inset-0 opacity-40">
+            <!-- બેકગ્રાઉન્ડ ઈમેજ (અહીં તમે તમારી દુકાનનો ફોટો લગાવી શકો છો) -->
+            <img src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="Art Gallery Background" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/1920x800?text=Royal+Art+Gallery'">
+        </div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 flex flex-col items-center text-center">
+            <h2 class="text-4xl md:text-6xl font-serif font-bold mb-4">All Types of Imported Home Decoration Products <br> <span class="text-royal-gold">under One Roof</span></h2>
+            <p class="text-lg md:text-xl mb-8 max-w-2xl text-gray-200">વોલ આર્ટ, પેઇન્ટિંગ્સ, મેટલ આર્ટ, આર્ટિફેક્ટ્સ અને ઘણું બધું... તમારા ઘરને આપો એક રોયલ લુક.</p>
+            <a href="#products" class="bg-royal-orange hover:bg-orange-600 text-white font-bold py-3 px-8 rounded-full transition transform hover:scale-105 shadow-lg">
+                અમારું કલેક્શન જુઓ
+            </a>
+        </div>
+    </section>
+
+    <!-- પ્રોડક્ટ્સ સેક્શન અને સર્ચ બાર -->
+    <section id="products" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-10">
+            <h2 class="text-3xl font-serif font-bold text-royal-dark mb-2">અમારી પ્રોડક્ટ્સ</h2>
+            <div class="w-24 h-1 bg-royal-orange mx-auto"></div>
+        </div>
+
+        <!-- સર્ચ બાર -->
+        <div class="max-w-xl mx-auto mb-10 relative">
+            <input type="text" id="searchInput" placeholder="પ્રોડક્ટ શોધો... (દા.ત. Clock, Painting)" class="w-full pl-12 pr-4 py-3 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-royal-orange focus:border-transparent shadow-sm text-lg">
+            <i class="fas fa-search absolute left-5 top-4 text-gray-400 text-lg"></i>
+        </div>
+
+        <!-- કેટેગરી ફિલ્ટર્સ (તમારા કાર્ડ મુજબ) -->
+        <div class="flex flex-wrap justify-center gap-3 mb-12" id="categoryFilters">
+            <button class="filter-btn active bg-royal-dark text-white px-5 py-2 rounded-full text-sm font-semibold shadow" data-filter="all">All (બધું)</button>
+            <button class="filter-btn bg-white text-gray-700 border border-gray-300 px-5 py-2 rounded-full text-sm font-semibold hover:bg-gray-100 transition" data-filter="Wall Art">Wall Art</button>
+            <button class="filter-btn bg-white text-gray-700 border border-gray-300 px-5 py-2 rounded-full text-sm font-semibold hover:bg-gray-100 transition" data-filter="Wall Clocks">Wall Clocks</button>
+            <button class="filter-btn bg-white text-gray-700 border border-gray-300 px-5 py-2 rounded-full text-sm font-semibold hover:bg-gray-100 transition" data-filter="Artefact">Artefact</button>
+            <button class="filter-btn bg-white text-gray-700 border border-gray-300 px-5 py-2 rounded-full text-sm font-semibold hover:bg-gray-100 transition" data-filter="Metal Art">Metal Art</button>
+            <button class="filter-btn bg-white text-gray-700 border border-gray-300 px-5 py-2 rounded-full text-sm font-semibold hover:bg-gray-100 transition" data-filter="Murti">Murti</button>
+        </div>
+
+        <!-- પ્રોડક્ટ ગ્રીડ (JavaScript થી ડેટા આવશે) -->
+        <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+            <!-- પ્રોડક્ટ્સ અહી લોડ થશે -->
+        </div>
+        
+        <!-- જો કોઈ પ્રોડક્ટ ન મળે ત્યારે મેસેજ -->
+        <div id="noProductMsg" class="hidden text-center text-red-500 font-bold mt-8 text-xl">
+            માફ કરશો, આ નામની કોઈ પ્રોડક્ટ મળી નથી.
+        </div>
+    </section>
+
+    <!-- એપોઇન્ટમેન્ટ અને પેમેન્ટ સેક્શન -->
+    <section id="services" class="bg-gray-100 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                
+                <!-- એપોઇન્ટમેન્ટ બુકિંગ -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg text-center border-t-4 border-royal-dark">
+                    <div class="w-16 h-16 bg-royal-dark text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+                        <i class="far fa-calendar-check"></i>
+                    </div>
+                    <h3 class="text-2xl font-serif font-bold mb-4">રૂબરૂ મુલાકાત માટે એપોઇન્ટમેન્ટ</h3>
+                    <p class="text-gray-600 mb-6">અમારી ગેલેરીની રૂબરૂ મુલાકાત લેવા અને આર્ટિફેક્ટ્સ જોવા માટે અગાઉથી એપોઇન્ટમેન્ટ બુક કરો.</p>
+                    <!-- Google Form લિંક અથવા WhatsApp બુકિંગ -->
+                    <a href="https://wa.me/919999999999?text=Hello,%20I%20want%20to%20book%20an%20appointment%20to%20visit%20Royal%20Art%20Gallery." target="_blank" class="inline-block bg-royal-dark text-white font-bold py-3 px-6 rounded hover:bg-gray-800 transition">
+                        <i class="fab fa-whatsapp mr-2"></i> WhatsApp પર બુક કરો
+                    </a>
+                </div>
+
+                <!-- ઓનલાઇન પેમેન્ટ (QR Code) -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg text-center border-t-4 border-royal-orange">
+                    <div class="w-16 h-16 bg-royal-orange text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+                        <i class="fas fa-qrcode"></i>
+                    </div>
+                    <h3 class="text-2xl font-serif font-bold mb-4">ઓનલાઇન પેમેન્ટ</h3>
+                    <p class="text-gray-600 mb-4">ઓર્ડર કન્ફર્મ કરવા માટે નીચે આપેલ QR કોડ સ્કેન કરીને સુરક્ષિત પેમેન્ટ કરો.</p>
+                    
+                    <!-- તમારો પેમેન્ટ QR કોડ અહીં મુકવો (હાલ ડેમો ઈમેજ છે) -->
+                    <div class="bg-gray-50 p-4 inline-block rounded-xl border-2 border-dashed border-gray-300">
+                        <!-- જ્યારે તમારી પાસે તમારો QR હોય, ત્યારે 'src' માં તેનું નામ નાખી દેજો, દા.ત. src="my_qr_code.jpg" -->
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg" alt="Payment QR Code" class="w-40 h-40 mx-auto" onerror="this.src='https://via.placeholder.com/150?text=QR+Code'">
+                        <p class="text-sm font-bold text-gray-800 mt-2">UPI Accepted Here</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ફૂટર (Contact Info) -->
+    <footer id="contact" class="bg-royal-dark text-gray-300 py-12 border-t-4 border-royal-gold">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8">
+            
+            <!-- કંપની ઇન્ફો -->
+            <div>
+                <h3 class="text-2xl font-serif font-bold text-white mb-4"><span class="text-royal-orange">ROYAL</span> ART GALLERY</h3>
+                <p class="mb-4 text-sm">All Types of Imported Home Decoration Products under One Roof.</p>
+                <div class="flex space-x-4">
+                    <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-royal-orange transition text-white">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-royal-orange transition text-white">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- સંપર્ક વિગતો (તમારા કાર્ડ મુજબ) -->
+            <div>
+                <h4 class="text-lg font-bold text-white mb-4 border-b border-gray-700 pb-2">સંપર્ક કરો (Contact Us)</h4>
+                <ul class="space-y-3">
+                    <li class="flex items-start">
+                        <i class="fas fa-map-marker-alt mt-1 mr-3 text-royal-orange"></i>
+                        <span>104, Shaligram Signet, <br> Nr. Speedwell Party Plot, <br> Opp. HDFC Bank, Rajkot.</span>
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-envelope mr-3 text-royal-orange"></i>
+                        <!-- મેં કાર્ડ પરથી ઈમેલનો અંદાજ લગાવ્યો છે -->
+                        <span>royalartgallery924@gmail.com</span>
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-phone-alt mr-3 text-royal-orange"></i>
+                        <!-- તમારો ફોન નંબર અહીં નાખવો -->
+                        <span>+91 99999 99999</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- ક્વિક લિંક્સ -->
+            <div>
+                <h4 class="text-lg font-bold text-white mb-4 border-b border-gray-700 pb-2">ઝડપી લિંક્સ (Quick Links)</h4>
+                <ul class="space-y-2">
+                    <li><a href="#home" class="hover:text-royal-orange transition"><i class="fas fa-angle-right mr-2"></i> હોમ</a></li>
+                    <li><a href="#products" class="hover:text-royal-orange transition"><i class="fas fa-angle-right mr-2"></i> કલેક્શન જુઓ</a></li>
+                    <li><a href="#services" class="hover:text-royal-orange transition"><i class="fas fa-angle-right mr-2"></i> પેમેન્ટ QR</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="text-center text-sm mt-10 pt-6 border-t border-gray-800">
+            &copy; 2026 Royal Art Gallery. All Rights Reserved.
+        </div>
+    </footer>
+
+    <!-- JavaScript લોજીક (પ્રોડક્ટ્સ, સર્ચ અને કાર્ટ માટે) -->
+    <script>
+        // મોબાઈલ મેનુ ટોગલ
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // તમારો WhatsApp નંબર (આ નંબર પર ઓર્ડરના મેસેજ આવશે)
+        const myWhatsAppNumber = "7607671571"; 
+
+        // પ્રોડક્ટ્સનો ડેટાબેઝ (ડેમો માટે)
+        // જ્યારે તમારી પાસે અસલી ફોટા હોય, ત્યારે 'image' ની લિંક બદલી નાખવી.
+        const productsData = [
+            { id: 1, name: "Premium Vintage Wall Clock", category: "Wall Clocks", price: "₹2,500", image: "https://images.unsplash.com/photo-1563861826100-9cb868fdbe1c?w=500&auto=format&fit=crop&q=60" },
+            { id: 2, name: "Abstract Metal Wall Art", category: "Metal Art", price: "₹4,200", image: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=500&auto=format&fit=crop&q=60" },
+            { id: 3, name: "Gautam Buddha Murti (Resin)", category: "Murti", price: "₹1,800", image: "https://images.unsplash.com/photo-1601314002592-b8734bca6604?w=500&auto=format&fit=crop&q=60" },
+            { id: 4, name: "Designer Flower Vase Pot", category: "Pot", price: "₹950", image: "https://images.unsplash.com/photo-1580237072617-771c3ecc4a24?w=500&auto=format&fit=crop&q=60" },
+            { id: 5, name: "Handpainted Canvas Art", category: "Painting", price: "₹3,500", image: "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=500&auto=format&fit=crop&q=60" },
+            { id: 6, name: "Luxury Desktop Artefact", category: "Artefact", price: "₹1,200", image: "https://images.unsplash.com/photo-1544457070-4cd773b4d71e?w=500&auto=format&fit=crop&q=60" },
+            { id: 7, name: "Modern Big Wall Clock", category: "Wall Clocks", price: "₹3,100", image: "https://images.unsplash.com/photo-1506466010722-395aa2bef877?w=500&auto=format&fit=crop&q=60" },
+            { id: 8, name: "Golden Leaves Metal Art", category: "Wall Art", price: "₹2,800", image: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=500&auto=format&fit=crop&q=60" }
+        ];
+
+        const productGrid = document.getElementById('productGrid');
+        const noProductMsg = document.getElementById('noProductMsg');
+
+        // પ્રોડક્ટ્સ બતાવવાનું ફંક્શન
+        function displayProducts(products) {
+            productGrid.innerHTML = ''; // પહેલા ગ્રીડ ખાલી કરો
+            
+            if (products.length === 0) {
+                noProductMsg.classList.remove('hidden');
+            } else {
+                noProductMsg.classList.add('hidden');
+                products.forEach(product => {
+                    // WhatsApp નો મેસેજ કેવો જશે તે નક્કી કરો
+                    const waMessage = encodeURIComponent(`નમસ્તે, મારે આ પ્રોડક્ટ ખરીદવી છે:\n\n*Product:* ${product.name}\n*Category:* ${product.category}\n*Price:* ${product.price}\n\nશું આ ઉપલબ્ધ છે?`);
+                    const waLink = `https://wa.me/${myWhatsAppNumber}?text=${waMessage}`;
+
+                    const card = `
+                        <div class="product-card bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 flex flex-col h-full">
+                            <div class="h-64 overflow-hidden relative">
+                                <span class="absolute top-2 left-2 bg-royal-dark text-white text-xs font-bold px-2 py-1 rounded z-10">${product.category}</span>
+                                <img src="${product.image}" alt="${product.name}" class="product-img w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/500?text=No+Image'">
+                            </div>
+                            <div class="p-5 flex flex-col flex-grow">
+                                <h3 class="text-lg font-bold text-gray-800 mb-2">${product.name}</h3>
+                                <p class="text-royal-orange font-bold text-xl mb-4 mt-auto">${product.price}</p>
+                                <a href="${waLink}" target="_blank" class="w-full block text-center bg-green-500 hover:bg-green-600 text-white font-bold py-2 rounded transition">
+                                    <i class="fab fa-whatsapp mr-1"></i> Buy Now (ખરીદો)
+                                </a>
+                            </div>
+                        </div>
+                    `;
+                    productGrid.innerHTML += card;
+                });
+            }
+        }
+
+        // પેજ લોડ થાય ત્યારે બધી પ્રોડક્ટ્સ બતાવો
+        displayProducts(productsData);
+
+        // કેટેગરી ફિલ્ટર લોજીક
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // એક્ટિવ બટનનો કલર બદલો
+                filterBtns.forEach(b => {
+                    b.classList.remove('bg-royal-dark', 'text-white');
+                    b.classList.add('bg-white', 'text-gray-700');
+                });
+                btn.classList.remove('bg-white', 'text-gray-700');
+                btn.classList.add('bg-royal-dark', 'text-white');
+
+                // ફિલ્ટર કરો
+                const category = btn.getAttribute('data-filter');
+                if (category === 'all') {
+                    displayProducts(productsData);
+                } else {
+                    const filtered = productsData.filter(p => p.category === category);
+                    displayProducts(filtered);
+                }
+            });
+        });
+
+        // સર્ચ બાર લોજીક
+        const searchInput = document.getElementById('searchInput');
+        searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            const filtered = productsData.filter(p => 
+                p.name.toLowerCase().includes(searchTerm) || 
+                p.category.toLowerCase().includes(searchTerm)
+            );
+            displayProducts(filtered);
+        });
+    </script>
+</body>
+</html>
