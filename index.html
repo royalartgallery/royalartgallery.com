@@ -148,7 +148,8 @@
                     <p class="text-gray-600 mb-4">ઓર્ડર કન્ફર્મ કરવા માટે નીચે આપેલ QR કોડ સ્કેન કરીને સુરક્ષિત પેમેન્ટ કરો.</p>
                     
                     <div class="bg-gray-50 p-4 inline-block rounded-xl border-2 border-dashed border-gray-300">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg" alt="Payment QR Code" class="w-40 h-40 mx-auto" onerror="this.src='https://via.placeholder.com/150?text=QR+Code'">
+                        <!-- QR કોડનો ફોટો અહીં લિંક કર્યો છે -->
+                        <img src="qrcode.png" alt="Payment QR Code" class="w-40 h-40 mx-auto" onerror="this.src='https://via.placeholder.com/150?text=Upload+QR'">
                         <p class="text-sm font-bold text-gray-800 mt-2">UPI Accepted Here</p>
                     </div>
                 </div>
@@ -306,9 +307,8 @@
                 products.forEach(product => {
                     
                     // --- AUTOMATIC IMAGE NAMING LOGIC ---
-                    // આ કોડ તમારા "Code" પરથી જાતે જ ફોટાનું નામ ગોતી લેશે.
-                    // ઉદાહરણ: "RT 105 A" ને "rt105a.jpg" બનાવી દેશે.
-                    const imageName = product.code.toLowerCase().replace(/[^a-z0-9]/g, '') + '.jpg';
+                    // હવે આ કોડ એક્ઝેટ તમારો જે પ્રોડક્ટ કોડ હશે તે જ નામનો ફોટો શોધશે (Capital અને Space સાથે)
+                    const imageName = product.code + '.png';
                     // ------------------------------------
 
                     const sizeText = product.size ? `\n*Size:* ${product.size}` : '';
