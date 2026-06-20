@@ -102,7 +102,7 @@
             <i class="fas fa-search absolute left-5 top-4 text-gray-400 text-lg"></i>
         </div>
 
-        <!-- કેટેગરી ફિલ્ટર્સ (તમારા કાર્ડ મુજબ) -->
+        <!-- કેટેગરી ફિલ્ટર્સ -->
         <div class="flex flex-wrap justify-center gap-3 mb-12" id="categoryFilters">
             <button class="filter-btn active bg-royal-dark text-white px-5 py-2 rounded-full text-sm font-semibold shadow" data-filter="all">All (બધું)</button>
             <button class="filter-btn bg-white text-gray-700 border border-gray-300 px-5 py-2 rounded-full text-sm font-semibold hover:bg-gray-100 transition" data-filter="Artefact">Artefact</button>
@@ -148,8 +148,8 @@
                     <p class="text-gray-600 mb-4">ઓર્ડર કન્ફર્મ કરવા માટે નીચે આપેલ QR કોડ સ્કેન કરીને સુરક્ષિત પેમેન્ટ કરો.</p>
                     
                     <div class="bg-gray-50 p-4 inline-block rounded-xl border-2 border-dashed border-gray-300">
-                        <!-- QR કોડનો ફોટો અહીં લિંક કર્યો છે -->
-                        <img src="qrcode.png" alt="Payment QR Code" class="w-40 h-40 mx-auto" onerror="this.src='https://via.placeholder.com/150?text=Upload+QR'">
+                        <!-- તમારો પેમેન્ટ QR કોડ અહીં મુકવો -->
+                        <img src="qrcode.png" alt="Payment QR Code" class="w-40 h-40 mx-auto" onerror="this.src='https://via.placeholder.com/150?text=Upload+qrcode.png'">
                         <p class="text-sm font-bold text-gray-800 mt-2">UPI Accepted Here</p>
                     </div>
                 </div>
@@ -210,7 +210,13 @@
         </div>
     </footer>
 
-    <!-- JavaScript લોજીક (પ્રોડક્ટ્સ, સર્ચ અને કાર્ટ માટે) -->
+    <!-- મોટો ફોટો જોવા માટેનું મોડલ (Lightbox) -->
+    <div id="imageModal" class="fixed inset-0 z-[100] hidden bg-black bg-opacity-90 flex items-center justify-center p-4 transition-opacity duration-300">
+        <button id="closeModalBtn" class="absolute top-5 right-5 text-white text-5xl hover:text-royal-orange focus:outline-none">&times;</button>
+        <img id="modalImage" src="" class="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl">
+    </div>
+
+    <!-- JavaScript લોજીક -->
     <script>
         // મોબાઈલ મેનુ ટોગલ
         document.getElementById('mobile-menu-btn').addEventListener('click', function() {
@@ -218,80 +224,227 @@
             menu.classList.toggle('hidden');
         });
 
-        // તમારો સાચો WhatsApp નંબર 
         const myWhatsAppNumber = "917607671571"; 
 
-        // ૫ કેટેલોગમાંથી કાઢવામાં આવેલી ૫૯ બેસ્ટ પ્રોડક્ટ્સ
+        // ૫ કેટેલોગમાંથી કાઢવામાં આવેલી તમામ પ્રોડક્ટ્સ
         const productsData = [
-            // --- CATALOG 1 ---
+            // CATALOG 1
             { id: 1, code: "80869", name: "Meditation Lady Artefact", category: "Artefact", price: "₹4,000", size: "24X13X26 cm" },
-            { id: 2, code: "80877", name: "Moon Meditation Artefact", category: "Artefact", price: "₹5,100", size: "29X11X23 cm" },
-            { id: 3, code: "GBP 2501 5 B", name: "Silver Yoga Figure", category: "Artefact", price: "₹1,560", size: "15X12X26 cm" },
-            { id: 4, code: "GBP 2501 15", name: "Elephant Head Artefact", category: "Artefact", price: "₹2,100", size: "14X9X31 cm" },
-            { id: 5, code: "GBP 2501 30 A", name: "Astronaut on Rocket", category: "Gift Articles", price: "₹1,920", size: "13X9X30 cm" },
-            { id: 6, code: "GBP 2501 31 A", name: "Astronaut on Moon", category: "Gift Articles", price: "₹750", size: "12X5X12 cm" },
-            { id: 7, code: "GBP 2501 32 A", name: "Standing Astronaut", category: "Gift Articles", price: "₹1,620", size: "10X8X27 cm" },
-            { id: 8, code: "GBP 2505 2 A", name: "Elephant with Crystal", category: "Artefact", price: "₹4,080", size: "20X10X13 cm" },
-            { id: 9, code: "RT 105 A", name: "Premium Elephant Pair", category: "Artefact", price: "₹1,750", size: "3X6X31 cm" },
-            { id: 10, code: "RT 108 A", name: "Deer Family Set", category: "Artefact", price: "₹2,350", size: "10X27X16 cm" },
-            { id: 11, code: "RT 111 B", name: "Geometric Elephant", category: "Artefact", price: "₹2,250", size: "9X5X23 cm" },
-            { id: 12, code: "RT 118 A", name: "Astronaut with Balloon", category: "Gift Articles", price: "₹950", size: "5X9X18 cm" },
-            { id: 13, code: "RT 119 A", name: "Wireframe Planter", category: "Pot", price: "₹1,200", size: "12X12X26 cm" },
-            { id: 14, code: "RT 120 A", name: "Wireframe Planter Round", category: "Pot", price: "₹1,250", size: "8X24X21 cm" },
-            { id: 15, code: "RT-101 C", name: "Abstract Elephant", category: "Artefact", price: "₹1,250", size: "5X27X12 cm" },
+            { id: 2, code: "80870", name: "Meditation Lady (Red Shirt)", category: "Artefact", price: "₹4,000", size: "24X13X26 cm" },
+            { id: 3, code: "80872", name: "Meditation Lady (Purple Shirt)", category: "Artefact", price: "₹4,000", size: "24X13X26 cm" },
+            { id: 4, code: "80877", name: "Moon Meditation Artefact", category: "Artefact", price: "₹5,100", size: "29X11X23 cm" },
+            { id: 5, code: "80878", name: "Moon Meditation (Red Shirt)", category: "Artefact", price: "₹5,100", size: "29X11X23 cm" },
+            { id: 6, code: "80880", name: "Moon Meditation (Purple Shirt)", category: "Artefact", price: "₹5,100", size: "29X11X23 cm" },
+            { id: 7, code: "80885", name: "Small Meditation Lady", category: "Artefact", price: "₹2,150", size: "16X9X18 cm" },
+            { id: 8, code: "80886", name: "Small Meditation Lady (Purple)", category: "Artefact", price: "₹2,150", size: "16X9X18 cm" },
+            { id: 9, code: "80888", name: "Small Meditation Lady (Red)", category: "Artefact", price: "₹2,150", size: "16X9X18 cm" },
+            { id: 10, code: "GBP 2501 5 B", name: "Gold Yoga Figure", category: "Artefact", price: "₹1,560", size: "15X12X26 cm" },
+            { id: 11, code: "GBP 2501 5 C", name: "Silver Yoga Figure", category: "Artefact", price: "₹1,560", size: "15X12X26 cm" },
+            { id: 12, code: "GBP 2501 15 B", name: "Black Elephant Head", category: "Artefact", price: "₹2,100", size: "14X9X31 cm" },
+            { id: 13, code: "GBP 2501 15 C", name: "White Elephant Head", category: "Artefact", price: "₹2,100", size: "14X9X31 cm" },
+            { id: 14, code: "GBP 2501 29 C", name: "Small Gold Planter", category: "Pot", price: "₹720", size: "7X7X15 cm" },
+            { id: 15, code: "GBP 2501 29 A", name: "Small Gold Planter Variant A", category: "Pot", price: "₹720", size: "7X7X15 cm" },
+            { id: 16, code: "GBP 2501 29 B", name: "Small Gold Planter Variant B", category: "Pot", price: "₹720", size: "7X7X15 cm" },
+            { id: 17, code: "GBP 2501 30 A", name: "Astronaut on Rocket (Silver)", category: "Gift Articles", price: "₹1,920", size: "13X9X30 cm" },
+            { id: 18, code: "GBP 2501 30 B", name: "Astronaut on Rocket (White)", category: "Gift Articles", price: "₹1,920", size: "13X9X30 cm" },
+            { id: 19, code: "GBP 2501 30 C", name: "Astronaut on Rocket (White Variant)", category: "Gift Articles", price: "₹1,920", size: "13X9X30 cm" },
+            { id: 20, code: "GBP 2501 31 A", name: "Astronaut on Moon Single", category: "Gift Articles", price: "₹750", size: "12X5X12 cm" },
+            { id: 21, code: "GBP 2501 31 BC", name: "Astronaut on Moon Pair", category: "Gift Articles", price: "₹1,500", size: "12X5X12 cm" },
+            { id: 22, code: "GBP 2501 32 A", name: "Standing Astronaut (Gold Shorts)", category: "Gift Articles", price: "₹1,620", size: "10X8X27 cm" },
+            { id: 23, code: "GBP 2501 32 B", name: "Standing Astronaut (Blue Shorts)", category: "Gift Articles", price: "₹1,620", size: "10X8X27 cm" },
+            { id: 24, code: "GBP 2501 32 C", name: "Standing Astronaut (Black Shorts)", category: "Gift Articles", price: "₹1,620", size: "10X8X27 cm" },
+            { id: 25, code: "GBP 2505 2 A", name: "Elephant with Crystal", category: "Artefact", price: "₹4,080", size: "20X10X13 cm" },
+            { id: 26, code: "GBP 2505 2 B", name: "Elephant with Crystal Pair", category: "Artefact", price: "₹4,080", size: "20X10X13 cm" },
+            { id: 27, code: "GBP 2505 5 A", name: "Gold Figure Artefact", category: "Artefact", price: "₹720", size: "11X4X13 cm" },
+            { id: 28, code: "RT 105 A", name: "White Elephant Pair", category: "Artefact", price: "₹1,750", size: "3X6X31 cm" },
+            { id: 29, code: "RT 105 B", name: "Black Elephant Pair", category: "Artefact", price: "₹1,750", size: "3X6X31 cm" },
+            { id: 30, code: "RT 108 A", name: "Deer Family Set Gold", category: "Artefact", price: "₹2,350", size: "10X27X16 cm" },
+            { id: 31, code: "RT 108 B", name: "Deer Family Set Abstract", category: "Artefact", price: "₹2,350", size: "10X27X16 cm" },
+            { id: 32, code: "RT 111 B", name: "Geometric Elephant Family", category: "Artefact", price: "₹2,250", size: "9X5X23 cm" },
+            { id: 33, code: "RT 111 C", name: "Geometric Elephant Single", category: "Artefact", price: "₹2,250", size: "9X5X23 cm" },
+            { id: 34, code: "RT 118 A", name: "Astronaut with Balloon (White/Gold)", category: "Gift Articles", price: "₹950", size: "5X9X18 cm" },
+            { id: 35, code: "RT 118 B", name: "Astronaut with Balloon (Silver)", category: "Gift Articles", price: "₹950", size: "5X9X18 cm" },
+            { id: 36, code: "RT 118 C", name: "Astronaut with Balloon (Silver Shoes)", category: "Gift Articles", price: "₹950", size: "5X9X18 cm" },
+            { id: 37, code: "RT 118 D", name: "Astronaut with Balloon (Variant)", category: "Gift Articles", price: "₹950", size: "5X9X18 cm" },
+            { id: 38, code: "RT 119 A", name: "Wireframe Planter Single", category: "Pot", price: "₹1,200", size: "12X12X26 cm" },
+            { id: 39, code: "RT 119 B", name: "Wireframe Planter Pair", category: "Pot", price: "₹1,200", size: "12X12X26 cm" },
+            { id: 40, code: "RT 119 C", name: "Wireframe Planter Gold", category: "Pot", price: "₹1,200", size: "12X12X26 cm" },
+            { id: 41, code: "RT 120 A", name: "Wireframe Planter Round Gold", category: "Pot", price: "₹1,250", size: "8X24X21 cm" },
+            { id: 42, code: "RT 120 B", name: "Wireframe Planter Round Pair", category: "Pot", price: "₹1,250", size: "8X24X21 cm" },
+            { id: 43, code: "RT 120 C", name: "Wireframe Planter Round Variant", category: "Pot", price: "₹1,250", size: "8X24X21 cm" },
+            { id: 44, code: "RT-101 C", name: "White Abstract Elephant", category: "Artefact", price: "₹1,250", size: "5X27X12 cm" },
+            { id: 45, code: "RT-101 D", name: "Black Abstract Elephant", category: "Artefact", price: "₹1,250", size: "5X27X12 cm" },
 
-            // --- CATALOG 2 ---
-            { id: 16, code: "GBP 2501 2 A", name: "Angel Wings Artefact", category: "Artefact", price: "₹1,500", size: "18X10X30 cm" },
-            { id: 17, code: "GBP 2501 4 A", name: "Twisted Stand Crystal", category: "Artefact", price: "₹1,500", size: "8X8X27 cm" },
-            { id: 18, code: "GBP 2501 6 A", name: "Parrot Pair Artefact", category: "Artefact", price: "₹1,680", size: "13X7X30 cm" },
-            { id: 19, code: "GBP 2501 8 A", name: "Abstract Curve Crystal", category: "Artefact", price: "₹1,560", size: "7X8X31 cm" },
-            { id: 20, code: "GBP 2503 2 A", name: "Lion Crown Showpiece", category: "Artefact", price: "₹900", size: "8X11X20 cm" },
-            { id: 21, code: "GBP 2503 3 A", name: "Deer Head Artefact", category: "Artefact", price: "₹1,750", size: "10X8X35 cm" },
-            { id: 22, code: "GBP 2505 1 A", name: "Deer Pair with Crystal", category: "Artefact", price: "₹3,480", size: "20X8X33 cm" },
-            { id: 23, code: "GBP 2505 7", name: "Buddha Bust", category: "Murti", price: "₹780", size: "7X7X21 cm" },
-            { id: 24, code: "GBP 4191 A", name: "Hands with Crystal", category: "Artefact", price: "₹2,250", size: "10X7X30 cm" },
-            { id: 25, code: "GBP 5037", name: "Standing Deer Pair", category: "Artefact", price: "₹2,750", size: "13X9X25 cm" },
-            { id: 26, code: "RT 99 A", name: "Musician Artefact", category: "Artefact", price: "₹1,350", size: "10X7X28 cm" },
-            { id: 27, code: "RT 100 A", name: "Guitarist Artefact", category: "Artefact", price: "₹1,350", size: "9X7X28 cm" },
-            { id: 28, code: "RT 109 A", name: "Abstract Dancer", category: "Artefact", price: "₹1,450", size: "11X7X30 cm" },
-            { id: 29, code: "RT-104 A", name: "Leopard / Panther Artefact", category: "Artefact", price: "₹1,300", size: "10X26X21 cm" },
+            // CATALOG 2
+            { id: 46, code: "GBP 2501 2 A", name: "White Angel Wings", category: "Artefact", price: "₹1,500", size: "18X10X30 cm" },
+            { id: 47, code: "GBP 2501 2 B", name: "Black Angel Wings", category: "Artefact", price: "₹1,500", size: "18X10X30 cm" },
+            { id: 48, code: "GBP 2501 4 A", name: "White Twisted Stand Crystal", category: "Artefact", price: "₹1,500", size: "8X8X27 cm" },
+            { id: 49, code: "GBP 2501 4 B", name: "Black Twisted Stand Crystal", category: "Artefact", price: "₹1,500", size: "8X8X27 cm" },
+            { id: 50, code: "GBP 2501 6 B", name: "Parrot Pair Gold Stand", category: "Artefact", price: "₹1,680", size: "13X7X30 cm" },
+            { id: 51, code: "GBP 2501 6 A", name: "Parrot Pair Silver Stand", category: "Artefact", price: "₹1,680", size: "13X7X30 cm" },
+            { id: 52, code: "GBP 2501 6 C", name: "Parrot Pair Rose Stand", category: "Artefact", price: "₹1,680", size: "13X7X30 cm" },
+            { id: 53, code: "GBP 2501 7 A", name: "Abstract Square Stand", category: "Artefact", price: "₹2,880", size: "18X8X26 cm" },
+            { id: 54, code: "GBP 2501 8 A", name: "White Abstract Curve Crystal", category: "Artefact", price: "₹1,560", size: "7X8X31 cm" },
+            { id: 55, code: "GBP 2501 8 B", name: "Black Abstract Curve Crystal", category: "Artefact", price: "₹1,560", size: "7X8X31 cm" },
+            { id: 56, code: "GBP 2501 9 B", name: "Abstract Flame Crystal", category: "Artefact", price: "₹1,560", size: "10X7X30 cm" },
+            { id: 57, code: "GBP 2501 9 C", name: "Abstract Flame Crystal Variant", category: "Artefact", price: "₹1,560", size: "10X7X30 cm" },
+            { id: 58, code: "GBP 2501 10 B", name: "Abstract S Curve Crystal", category: "Artefact", price: "₹1,560", size: "11X8X29 cm" },
+            { id: 59, code: "GBP 2501 10 C", name: "Abstract S Curve Crystal Variant", category: "Artefact", price: "₹1,560", size: "11X8X29 cm" },
+            { id: 60, code: "GBP 2501 12 A", name: "Deer Bust Gold Horns", category: "Artefact", price: "₹2,040", size: "9X9X30 cm" },
+            { id: 61, code: "GBP 2501 12 B", name: "Deer Bust Variant", category: "Artefact", price: "₹2,040", size: "9X9X30 cm" },
+            { id: 62, code: "GBP 2501 13 A", name: "Abstract Ribbon Crystal", category: "Artefact", price: "₹3,700", size: "8X13X48 cm" },
+            { id: 63, code: "GBP 2501 13 B", name: "Abstract Ribbon Crystal Variant", category: "Artefact", price: "₹3,700", size: "8X13X48 cm" },
+            { id: 64, code: "GBP 2501 16 A", name: "Bust with Cloud Hair", category: "Artefact", price: "₹1,200", size: "6X6X22 cm" },
+            { id: 65, code: "GBP 2501 16 B", name: "Bust with Gold Cloud Hair", category: "Artefact", price: "₹1,200", size: "6X6X22 cm" },
+            { id: 66, code: "GBP 2501 34 A", name: "Small Abstract Stand", category: "Artefact", price: "₹780", size: "6X6X14 cm" },
+            { id: 67, code: "GBP 2501 36 B", name: "Figure with Frame White", category: "Artefact", price: "₹1,380", size: "10X6X28 cm" },
+            { id: 68, code: "GBP 2501 36 A", name: "Figure with Frame Black", category: "Artefact", price: "₹1,380", size: "10X6X28 cm" },
+            { id: 69, code: "GBP 2503 2 A", name: "Lion with Gold Crown Black", category: "Artefact", price: "₹900", size: "8X11X20 cm" },
+            { id: 70, code: "GBP 2503 2 B", name: "Lion with Gold Crown White", category: "Artefact", price: "₹900", size: "8X11X20 cm" },
+            { id: 71, code: "GBP 2503 3 A", name: "Antelope Head Bronze", category: "Artefact", price: "₹1,750", size: "10X8X35 cm" },
+            { id: 72, code: "GBP 2503 3 B", name: "Antelope Head Gold", category: "Artefact", price: "₹1,750", size: "10X8X35 cm" },
+            { id: 73, code: "GBP 2503 11 B", name: "Panther Figurine Black", category: "Artefact", price: "₹1,250", size: "10X7X22 cm" },
+            { id: 74, code: "GBP 2503 11 A", name: "Panther Figurine Gold", category: "Artefact", price: "₹1,250", size: "10X7X22 cm" },
+            { id: 75, code: "GBP 2505 1 A", name: "Deer Pair with Crystal Balls", category: "Artefact", price: "₹3,480", size: "20X8X33 cm" },
+            { id: 76, code: "GBP 2505 7 ABC", name: "Buddha Bust Set of 3", category: "Murti", price: "₹2,340", size: "7X7X21 cm" },
+            { id: 77, code: "GBP 2505 8 A", name: "Sitting Lion Gold", category: "Artefact", price: "₹780", size: "8X9X16 cm" },
+            { id: 78, code: "GBP 2505 V 9", name: "Small Planter Vases Set of 3", category: "Pot", price: "₹390", size: "8X8X12 cm" },
+            { id: 79, code: "GBP 4191 B", name: "Black Hands with Crystal", category: "Artefact", price: "₹2,250", size: "10X7X30 cm" },
+            { id: 80, code: "GBP 4191 C", name: "Gold Hands with Crystal", category: "Artefact", price: "₹2,250", size: "10X7X30 cm" },
+            { id: 81, code: "GBP 4191 A", name: "Hands with Crystal Variant", category: "Artefact", price: "₹2,250", size: "10X7X30 cm" },
+            { id: 82, code: "GBP 5037 A", name: "Standing Deer Pair Variant", category: "Artefact", price: "₹2,750", size: "13X9X25 cm" },
+            { id: 83, code: "GBP N2501 14 A", name: "Tall Abstract Showpiece", category: "Artefact", price: "₹3,700", size: "12X12X52 cm" },
+            { id: 84, code: "GBP N2501 14 B", name: "Tall Abstract Showpiece Variant", category: "Artefact", price: "₹3,700", size: "12X12X52 cm" },
+            { id: 85, code: "GBP-2501-1 A", name: "Abstract Sculpture Gold", category: "Artefact", price: "₹1,680", size: "9X13X23 cm" },
+            { id: 86, code: "GBP-2501-1 B", name: "Abstract Sculpture Silver", category: "Artefact", price: "₹1,680", size: "9X13X23 cm" },
+            { id: 87, code: "GBP-2501-1 C", name: "Abstract Sculpture Bronze", category: "Artefact", price: "₹1,680", size: "9X13X23 cm" },
+            { id: 88, code: "GBP-2501-11 A", name: "Large Abstract Ring", category: "Artefact", price: "₹1,260", size: "12X18X22 cm" },
+            { id: 89, code: "GBP-2501-11 B", name: "Large Abstract Ring Variant", category: "Artefact", price: "₹1,260", size: "12X18X22 cm" },
+            { id: 90, code: "GBP-6089 A", name: "Tall Floor Planter", category: "Pot", price: "₹2,400", size: "10X10X43 cm" },
+            { id: 91, code: "GBP-6089 B", name: "Tall Floor Planter Variant", category: "Pot", price: "₹2,400", size: "10X10X43 cm" },
+            { id: 92, code: "RT 99 A", name: "Musician Figure Black", category: "Artefact", price: "₹1,350", size: "10X7X28 cm" },
+            { id: 93, code: "RT 99 B", name: "Musician Figure Silver Head", category: "Artefact", price: "₹1,350", size: "10X7X28 cm" },
+            { id: 94, code: "RT 100 A", name: "Guitarist Figure Silver Head", category: "Artefact", price: "₹1,350", size: "9X7X28 cm" },
+            { id: 95, code: "RT 100 B", name: "Guitarist Figure Gold", category: "Artefact", price: "₹1,350", size: "9X7X28 cm" },
+            { id: 96, code: "RT 109 A", name: "Abstract Dancer Gold", category: "Artefact", price: "₹1,450", size: "11X7X30 cm" },
+            { id: 97, code: "RT 109 B", name: "Abstract Dancer Bronze", category: "Artefact", price: "₹1,450", size: "11X7X30 cm" },
+            { id: 98, code: "RT 110 A", name: "Thinker Figure Gold", category: "Artefact", price: "₹1,250", size: "10X6X26 cm" },
+            { id: 99, code: "RT 110 B", name: "Thinker Figure Silver", category: "Artefact", price: "₹1,250", size: "10X6X26 cm" },
+            { id: 100, code: "RT-104 A", name: "White Panther Figurine", category: "Artefact", price: "₹1,300", size: "10X26X21 cm" },
+            { id: 101, code: "RT-104 C", name: "Black Panther Figurine", category: "Artefact", price: "₹1,300", size: "10X26X21 cm" },
 
-            // --- CATALOG 3 ---
-            { id: 30, code: "GBP 2503 8 A", name: "Couple Sitting Abstract", category: "Gift Articles", price: "₹1,150", size: "16X7X21 cm" },
-            { id: 31, code: "GBP 2511 14 A", name: "Boy & Girl Figure", category: "Gift Articles", price: "₹780", size: "8X7X21 cm" },
-            { id: 32, code: "GBP 2511 1 A", name: "Wedding Couple", category: "Gift Articles", price: "₹1,080", size: "13X5X19 cm" },
-            { id: 33, code: "GBP 2511 2 A", name: "Couple Sitting (Dangling Legs)", category: "Gift Articles", price: "₹840", size: "5X6X12 cm" },
-            { id: 34, code: "GBP 2511 6", name: "Couple with Watering Can", category: "Gift Articles", price: "₹1,080", size: "17X6X17 cm" },
-            { id: 35, code: "GBP 2511 9", name: "Couple on Blackboard", category: "Gift Articles", price: "₹1,440", size: "14X9X20 cm" },
-            { id: 36, code: "GBP 2511 13 A", name: "Couple on Moon Lamp", category: "Gift Articles", price: "₹1,140", size: "14X7X20 cm" },
-            { id: 37, code: "GBP 2511 17 A", name: "Couple Sitting Close", category: "Gift Articles", price: "₹960", size: "17X5X13 cm" },
-            { id: 38, code: "GBP 2511 24 AB", name: "Old Couple Rocking Chair", category: "Gift Articles", price: "₹900", size: "7X11X15 cm" },
-            { id: 39, code: "GBP 2886", name: "Family Showpiece", category: "Gift Articles", price: "₹1,750", size: "23X13X16 cm" },
-            { id: 40, code: "RT 94 A", name: "Couple with Tray", category: "Gift Articles", price: "₹1,750", size: "10X8X24 cm" },
-            { id: 41, code: "RT 95 A", name: "Couple on Bicycle", category: "Gift Articles", price: "₹2,000", size: "9X27X30 cm" },
-            { id: 42, code: "RT 96 A", name: "Couple on Swing", category: "Gift Articles", price: "₹1,450", size: "14X14X24 cm" },
+            // CATALOG 3
+            { id: 102, code: "GBP 2503 8 A", name: "Couple Sitting on Stone", category: "Gift Articles", price: "₹1,150", size: "16X7X21 cm" },
+            { id: 103, code: "GBP 2503 8 B", name: "Couple Sitting on Stone Gold", category: "Gift Articles", price: "₹1,150", size: "16X7X21 cm" },
+            { id: 104, code: "GBP 2511 14 A", name: "Father and Daughter Figurine", category: "Gift Articles", price: "₹780", size: "8X7X21 cm" },
+            { id: 105, code: "GBP 2511 14 B", name: "Mother and Son Figurine", category: "Gift Articles", price: "₹780", size: "7X5X19 cm" },
+            { id: 106, code: "GBP 2511 1 A", name: "Boy and Girl Set", category: "Gift Articles", price: "₹1,080", size: "13X5X19 cm" },
+            { id: 107, code: "GBP 2511 1 B", name: "Wedding Couple Set", category: "Gift Articles", price: "₹1,080", size: "13X4X19 cm" },
+            { id: 108, code: "GBP 2511 1 C", name: "Modern Couple Set", category: "Gift Articles", price: "₹1,080", size: "13X5X19 cm" },
+            { id: 109, code: "GBP 2511 1 E", name: "Vintage Couple Set", category: "Gift Articles", price: "₹1,080", size: "10X3X20 cm" },
+            { id: 110, code: "GBP 2511 1 F", name: "Wedding Couple Prom Set", category: "Gift Articles", price: "₹1,080", size: "13X4X19 cm" },
+            { id: 111, code: "GBP 2511 1 G", name: "Wedding Couple Prom Set Variant", category: "Gift Articles", price: "₹1,080", size: "13X4X19 cm" },
+            { id: 112, code: "GBP 2511 2 B", name: "Dangling Legs Couple (Green)", category: "Gift Articles", price: "₹840", size: "5X6X12 cm" },
+            { id: 113, code: "GBP 2511 2 E", name: "Dangling Legs Couple (Star)", category: "Gift Articles", price: "₹840", size: "5X6X12 cm" },
+            { id: 114, code: "GBP 2511 2 F", name: "Dangling Legs Couple (Casual)", category: "Gift Articles", price: "₹840", size: "5X6X12 cm" },
+            { id: 115, code: "GBP 2511 2 A", name: "Dangling Legs Couple (Jeans)", category: "Gift Articles", price: "₹840", size: "5X6X12 cm" },
+            { id: 116, code: "GBP 2511 2 C", name: "Standing Wedding Couple", category: "Gift Articles", price: "₹1,080", size: "13X4X19 cm" },
+            { id: 117, code: "GBP 2511 2 D", name: "Dangling Legs Couple (Hats)", category: "Gift Articles", price: "₹840", size: "5X6X12 cm" },
+            { id: 118, code: "GBP 2511 5 A", name: "Couple with Golf Bag", category: "Gift Articles", price: "₹1,080", size: "15X6X18 cm" },
+            { id: 119, code: "GBP 2511 6 A", name: "Couple Gardening", category: "Gift Articles", price: "₹1,080", size: "17X6X17 cm" },
+            { id: 120, code: "GBP 2511 9 A", name: "Couple on Blackboard Desk", category: "Gift Articles", price: "₹1,440", size: "14X9X20 cm" },
+            { id: 121, code: "GBP 2511 11 AB", name: "Small Boy/Girl Figures", category: "Gift Articles", price: "₹1,320", size: "10X10X12 cm" },
+            { id: 122, code: "GBP 2511 12 A", name: "Dangling Legs Figure Set", category: "Gift Articles", price: "₹840", size: "5X6X12 cm" },
+            { id: 123, code: "GBP 2511 13 A", name: "Couple on Pink Moon Lamp", category: "Gift Articles", price: "₹1,140", size: "14X7X20 cm" },
+            { id: 124, code: "GBP 2511 13 B", name: "Couple on Green Moon Lamp", category: "Gift Articles", price: "₹1,140", size: "14X7X20 cm" },
+            { id: 125, code: "GBP 2511 17 A", name: "Sitting Couple Pink Dress", category: "Gift Articles", price: "₹960", size: "17X5X13 cm" },
+            { id: 126, code: "GBP 2511 17 B", name: "Sitting Couple Yellow Dress", category: "Gift Articles", price: "₹960", size: "17X5X13 cm" },
+            { id: 127, code: "GBP 2511 24 AB", name: "Grandparents in Rocking Chairs", category: "Gift Articles", price: "₹1,800", size: "7X11X15 cm" },
+            { id: 128, code: "GBP 2886 A", name: "Family of Three Figurine", category: "Gift Articles", price: "₹1,750", size: "23X13X16 cm" },
+            { id: 129, code: "RT 94 A", name: "Couple with Gold Tray Pink", category: "Gift Articles", price: "₹1,750", size: "10X8X24 cm" },
+            { id: 130, code: "RT 94 B", name: "Couple with Gold Tray Red", category: "Gift Articles", price: "₹1,750", size: "10X8X24 cm" },
+            { id: 131, code: "RT 95 A", name: "Couple on Bicycle Red Dress", category: "Gift Articles", price: "₹2,000", size: "9X27X30 cm" },
+            { id: 132, code: "RT 95 B", name: "Couple on Bicycle Brown Dress", category: "Gift Articles", price: "₹2,000", size: "9X27X30 cm" },
+            { id: 133, code: "RT 95 C", name: "Couple on Bicycle Teal Dress", category: "Gift Articles", price: "₹2,000", size: "9X27X30 cm" },
+            { id: 134, code: "RT 96 A", name: "Couple on Iron Swing Pink", category: "Gift Articles", price: "₹1,450", size: "14X14X24 cm" },
+            { id: 135, code: "RT 96 B", name: "Couple on Iron Swing Red", category: "Gift Articles", price: "₹1,450", size: "14X14X24 cm" },
+            { id: 136, code: "RT 96 C", name: "Couple on Iron Swing Teal", category: "Gift Articles", price: "₹1,450", size: "14X14X24 cm" },
 
-            // --- CATALOG 4 ---
-            { id: 43, code: "GBP 2501 18 A", name: "Girl with Flowers", category: "Artefact", price: "₹2,940", size: "21X10X35 cm" },
-            { id: 44, code: "GBP 2501 20 A", name: "Girl holding Cone", category: "Artefact", price: "₹2,280", size: "15X10X25 cm" },
-            { id: 45, code: "GBP 2501 25 A", name: "Girl on Tissue Box", category: "Pot", price: "₹3,000", size: "23X15X24 cm" },
-            { id: 46, code: "GBP 2501 26 C", name: "Girl on Crescent Bowl", category: "Artefact", price: "₹2,880", size: "23X15X29 cm" },
-            { id: 47, code: "GBP 2501 28 A", name: "Girl with Bunny Ears", category: "Artefact", price: "₹1,500", size: "9X6X29 cm" },
-            { id: 48, code: "GBP 2505 6 A", name: "Fairy Showpiece", category: "Artefact", price: "₹1,680", size: "12X8X23 cm" },
-            { id: 49, code: "GBP 2511 7 A", name: "Girl on Sofa Lamp", category: "Artefact", price: "₹1,080", size: "10X6X15 cm" },
-            { id: 50, code: "RT 97 A", name: "Ballerina Figurine", category: "Artefact", price: "₹1,750", size: "13X18X31 cm" },
-            { id: 51, code: "RT 98 A", name: "Ballerina Bending", category: "Artefact", price: "₹1,850", size: "17X11X36 cm" },
-            { id: 52, code: "RT 117", name: "Girl Blowing Bubble (Tray)", category: "Artefact", price: "₹2,150", size: "10X27X29 cm" },
+            // CATALOG 4
+            { id: 137, code: "GBP 2501 18 A", name: "Girl Holding Flower Bouquet Green", category: "Artefact", price: "₹2,940", size: "21X10X35 cm" },
+            { id: 138, code: "GBP 2501 18 B", name: "Girl Holding Flower Bouquet Red", category: "Artefact", price: "₹2,940", size: "21X10X35 cm" },
+            { id: 139, code: "GBP 2501 20 A", name: "Girl with Vase Red Dress", category: "Artefact", price: "₹2,280", size: "15X10X25 cm" },
+            { id: 140, code: "GBP 2501 20 B", name: "Girl with Vase Dark Dress", category: "Artefact", price: "₹2,280", size: "15X10X25 cm" },
+            { id: 141, code: "GBP 2501 20 C", name: "Girl with Vase Teal Dress", category: "Artefact", price: "₹2,280", size: "15X10X25 cm" },
+            { id: 142, code: "GBP 2501 25 A", name: "Girl on Orange Tissue Box", category: "Pot", price: "₹3,000", size: "23X15X24 cm" },
+            { id: 143, code: "GBP 2501 25 B", name: "Girl on Green Tissue Box", category: "Pot", price: "₹3,000", size: "23X15X24 cm" },
+            { id: 144, code: "GBP 2501 25 D", name: "Girl on Purple Tissue Box", category: "Pot", price: "₹3,000", size: "23X15X24 cm" },
+            { id: 145, code: "GBP 2501 26 C", name: "Girl on Orange Planter Bowl", category: "Pot", price: "₹2,880", size: "23X15X29 cm" },
+            { id: 146, code: "GBP 2501 26 B", name: "Girl on Purple Planter Bowl", category: "Pot", price: "₹2,880", size: "23X15X29 cm" },
+            { id: 147, code: "GBP 2501 26 A", name: "Girl on Green Planter Bowl", category: "Pot", price: "₹2,880", size: "23X15X29 cm" },
+            { id: 148, code: "GBP 2501 28 A", name: "Girl on Stand Yellow Dress", category: "Artefact", price: "₹1,500", size: "9X6X29 cm" },
+            { id: 149, code: "GBP 2501 28 B", name: "Girl on Stand Teal Dress", category: "Artefact", price: "₹1,500", size: "9X6X29 cm" },
+            { id: 150, code: "GBP 2501 28 C", name: "Girl on Stand Blue Dress", category: "Artefact", price: "₹1,500", size: "9X6X29 cm" },
+            { id: 151, code: "GBP 2505 6 A", name: "Fairy Showpiece Gold", category: "Artefact", price: "₹1,680", size: "12X8X23 cm" },
+            { id: 152, code: "GBP 2505 6 B", name: "Fairy Showpiece Silver Wings", category: "Artefact", price: "₹1,680", size: "12X5X23 cm" },
+            { id: 153, code: "GBP 2511 7 A", name: "Girl on Sofa with Lamp", category: "Gift Articles", price: "₹1,080", size: "10X6X15 cm" },
+            { id: 154, code: "GBP 2511 8 A", name: "Girl on Box with Balloons", category: "Gift Articles", price: "₹1,080", size: "9X5X23 cm" },
+            { id: 155, code: "GBP 2511 8 B", name: "Girl on Box Variant", category: "Gift Articles", price: "₹1,080", size: "9X5X23 cm" },
+            { id: 156, code: "GBP 2511 15 A", name: "Girl with Planter Bucket", category: "Pot", price: "₹840", size: "11X7X10 cm" },
+            { id: 157, code: "GBP 2511 115 B", name: "Boy with Planter Barrel", category: "Pot", price: "₹840", size: "11X7X10 cm" },
+            { id: 158, code: "RT 97 B", name: "Ballerina Red Dress", category: "Artefact", price: "₹1,750", size: "13X18X31 cm" },
+            { id: 159, code: "RT 97 A", name: "Ballerina Teal Dress", category: "Artefact", price: "₹1,750", size: "13X18X31 cm" },
+            { id: 160, code: "RT 98 B", name: "Dancing Ballerina Variant", category: "Artefact", price: "₹1,850", size: "17X11X36 cm" },
+            { id: 161, code: "RT 98 A", name: "Dancing Ballerina Pink", category: "Artefact", price: "₹1,850", size: "17X11X36 cm" },
+            { id: 162, code: "RT 98 C", name: "Dancing Ballerina Purple", category: "Artefact", price: "₹1,850", size: "17X11X36 cm" },
+            { id: 163, code: "RT 117 A", name: "Girl Blowing Bubble Gold Tray", category: "Artefact", price: "₹2,150", size: "10X27X29 cm" },
 
-            // --- CATALOG 5 ---
-            { id: 53, code: "GBP 2501 17 A", name: "Bear with Tray", category: "Artefact", price: "₹2,280", size: "16X9X22 cm" },
-            { id: 54, code: "GBP 2501 21 B", name: "Rabbit with Balloon", category: "Artefact", price: "₹1,380", size: "9X11X32 cm" },
-            { id: 55, code: "GBP 2501 24", name: "Panda with Tray", category: "Artefact", price: "₹1,350", size: "8X13X14 cm" },
-            { id: 56, code: "GBP 2501 27 A", name: "Cat Crown Planter", category: "Pot", price: "₹2,280", size: "10X29X23 cm" },
-            { id: 57, code: "GBP 2501 33 A", name: "Bear on Tree", category: "Artefact", price: "₹1,680", size: "16X18X27 cm" },
-            { id: 58, code: "GBP 2504 1 A", name: "Leaf with Crystal", category: "Artefact", price: "₹440", size: "8X7X18 cm" },
-            { id: 59, code: "GBP 2504 9", name: "Teapot Cage Planter", category: "Pot", price: "₹840", size: "27X17 cm" },
-            { id: 60, code: "GBP 2504 11", name: "Teardrop Planter", category: "Pot", price: "₹840", size: "15X8X24 cm" }
+            // CATALOG 5
+            { id: 164, code: "GBP 2501 17 A", name: "Polar Bear with Tray Pink Boots", category: "Artefact", price: "₹2,280", size: "16X9X22 cm" },
+            { id: 165, code: "GBP 2501 17 B", name: "Polar Bear with Tray Black Boots", category: "Artefact", price: "₹2,280", size: "16X9X22 cm" },
+            { id: 166, code: "GBP 2501 17 C", name: "Polar Bear with Tray Brown Boots", category: "Artefact", price: "₹2,280", size: "16X9X22 cm" },
+            { id: 167, code: "GBP 2501 19 A", name: "Girl with Rose and Tray", category: "Artefact", price: "₹2,760", size: "33X10X30 cm" },
+            { id: 168, code: "GBP 2501 21 B", name: "Rabbit with Mirror Balloon", category: "Artefact", price: "₹1,380", size: "9X11X32 cm" },
+            { id: 169, code: "GBP 2501 21 C", name: "Rabbit with Balloon Variant", category: "Artefact", price: "₹1,380", size: "9X11X32 cm" },
+            { id: 170, code: "GBP 2501 21 A", name: "Rabbit with Pink Balloon", category: "Artefact", price: "₹1,380", size: "9X11X32 cm" },
+            { id: 171, code: "GBP 2501 24 A", name: "Panda Holding Gold Tray", category: "Artefact", price: "₹1,350", size: "8X13X14 cm" },
+            { id: 172, code: "GBP 2501 27 A", name: "Cat Crown Planter Pink", category: "Pot", price: "₹2,280", size: "10X29X23 cm" },
+            { id: 173, code: "GBP 2501 27 B", name: "Cat Crown Planter Green", category: "Pot", price: "₹2,280", size: "10X29X23 cm" },
+            { id: 174, code: "GBP 2501 27 C", name: "Cat Crown Planter Red", category: "Pot", price: "₹2,280", size: "10X29X23 cm" },
+            { id: 175, code: "GBP 2501 33 B", name: "Bear Climbing Tree Brown", category: "Artefact", price: "₹1,680", size: "16X18X27 cm" },
+            { id: 176, code: "GBP 2501 33 A", name: "Bear Climbing Tree White", category: "Artefact", price: "₹1,680", size: "16X18X27 cm" },
+            { id: 177, code: "GBP 2501 33 C", name: "Bear Climbing Tree Blue", category: "Artefact", price: "₹1,680", size: "16X18X27 cm" },
+            { id: 178, code: "GBP 2503 9 A", name: "Abstract Deer Horn Display", category: "Artefact", price: "₹1,900", size: "33X10X14 cm" },
+            { id: 179, code: "GBP 2503 12 A", name: "Family Loop Figurine", category: "Gift Articles", price: "₹1,400", size: "13X7X40 cm" },
+            { id: 180, code: "GBP 2504 1 A", name: "Gold Leaf with Crystal Ball", category: "Artefact", price: "₹440", size: "8X7X18 cm" },
+            { id: 181, code: "GBP 2504 1 B", name: "Gold Leaf Variant", category: "Artefact", price: "₹440", size: "8X7X18 cm" },
+            { id: 182, code: "GBP 2504 1 C", name: "Gold Leaf Variant 2", category: "Artefact", price: "₹440", size: "8X7X18 cm" },
+            { id: 183, code: "GBP 2504 2 A", name: "Round Gold Frame Crystal", category: "Artefact", price: "₹500", size: "16X5X17 cm" },
+            { id: 184, code: "GBP 2504 2 B", name: "Round Gold Frame Leaf", category: "Artefact", price: "₹500", size: "16X5X17 cm" },
+            { id: 185, code: "GBP 2504 2 C", name: "Round Gold Frame Flower", category: "Artefact", price: "₹500", size: "16X5X17 cm" },
+            { id: 186, code: "GBP 2504 3 A", name: "Gold Coral Frame Crystal", category: "Artefact", price: "₹480", size: "13X6X13 cm" },
+            { id: 187, code: "GBP 2504 4 A", name: "Cage Frame Crystal", category: "Artefact", price: "₹400", size: "8X8X13 cm" },
+            { id: 188, code: "GBP 2504 5 A", name: "Tall Stand Crystal Orb", category: "Artefact", price: "₹900", size: "14X14X32 cm" },
+            { id: 189, code: "GBP 2504 6 A", name: "Wireframe Decor", category: "Artefact", price: "₹499", size: "15X15X19 cm" },
+            { id: 190, code: "GBP 2504 7 A", name: "Diamond Frame Crystal", category: "Artefact", price: "₹880", size: "17X5X23 cm" },
+            { id: 191, code: "GBP 2504 8 A", name: "Small Stand Display", category: "Artefact", price: "₹350", size: "7X6X16 cm" },
+            { id: 192, code: "GBP 2504 9 A", name: "Teapot Wire Planter", category: "Pot", price: "₹840", size: "27X17 cm" },
+            { id: 193, code: "GBP 2504 10 A", name: "Vase Wire Planter", category: "Pot", price: "₹840", size: "22X22X12 cm" },
+            { id: 194, code: "GBP 2504 11 A", name: "Teardrop Wire Planter", category: "Pot", price: "₹840", size: "15X8X24 cm" },
+            { id: 195, code: "GBP 2504 12 A", name: "Basket Wire Planter", category: "Pot", price: "₹570", size: "14X5X17 cm" },
+            { id: 196, code: "GBP 2511 18 B", name: "Family of 4 Dangling Legs Set", category: "Gift Articles", price: "₹3,200", size: "6X6X10 cm" },
+            { id: 197, code: "GBP 2511 18 C", name: "Family Dangling Legs Set 2", category: "Gift Articles", price: "₹3,200", size: "6X6X10 cm" },
+            { id: 198, code: "GBP 2511 19 A", name: "Family Cool Caps Set", category: "Gift Articles", price: "₹3,200", size: "6X6X10 cm" },
+            { id: 199, code: "GBP 2511 20 A", name: "Family Straw Hats Set", category: "Gift Articles", price: "₹3,200", size: "6X6X10 cm" },
+            { id: 200, code: "GBP 2511 22 B", name: "Family Love Hats Set", category: "Gift Articles", price: "₹3,200", size: "6X6X10 cm" },
+            { id: 201, code: "GBP 2511 27 A", name: "Abstract Decor Piece", category: "Artefact", price: "₹1,260", size: "9X9X23 cm" },
+            { id: 202, code: "GBP 2511 27 C", name: "Abstract Decor Piece Variant", category: "Artefact", price: "₹1,260", size: "9X9X23 cm" },
+            { id: 203, code: "GBP 2511 27 D", name: "Abstract Decor Piece Variant 2", category: "Artefact", price: "₹1,260", size: "9X9X23 cm" },
+            { id: 204, code: "GBP 2511 28 A", name: "Abstract Leaf Sculpture Green", category: "Artefact", price: "₹1,260", size: "13X8X16 cm" },
+            { id: 205, code: "GBP 2511 28 B", name: "Abstract Leaf Sculpture Variant", category: "Artefact", price: "₹1,260", size: "13X8X16 cm" },
+            { id: 206, code: "GBP 2511 29 A", name: "Abstract Swirl Sculpture Green", category: "Artefact", price: "₹1,600", size: "13X8X22 cm" },
+            { id: 207, code: "GBP 2511 29 B", name: "Abstract Swirl Sculpture Bronze", category: "Artefact", price: "₹1,600", size: "13X8X22 cm" },
+            { id: 208, code: "GBP 2511 29 C", name: "Abstract Swirl Sculpture White", category: "Artefact", price: "₹1,600", size: "13X8X22 cm" }
         ];
 
         const productGrid = document.getElementById('productGrid');
@@ -307,7 +460,6 @@
                 products.forEach(product => {
                     
                     // --- AUTOMATIC IMAGE NAMING LOGIC ---
-                    // હવે આ કોડ એક્ઝેટ તમારો જે પ્રોડક્ટ કોડ હશે તે જ નામનો ફોટો શોધશે (Capital અને Space સાથે)
                     const imageName = product.code + '.png';
                     // ------------------------------------
 
@@ -321,7 +473,7 @@
                         <div class="product-card bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 flex flex-col h-full">
                             <div class="h-64 overflow-hidden relative">
                                 <span class="absolute top-2 left-2 bg-royal-dark text-white text-xs font-bold px-2 py-1 rounded z-10">${product.category}</span>
-                                <img src="${imageName}" alt="${product.name}" class="product-img w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/500?text=Upload+${imageName}'">
+                                <img src="${imageName}" alt="${product.name}" class="product-img w-full h-full object-cover cursor-pointer" onclick="openLightbox('${imageName}')" title="ફોટો મોટો કરવા અહી ક્લિક કરો" onerror="this.src='https://via.placeholder.com/500?text=Upload+${imageName}'">
                             </div>
                             <div class="p-5 flex flex-col flex-grow">
                                 <p class="text-xs text-gray-400 font-bold mb-1 border-b border-gray-100 pb-1">CODE: ${product.code}</p>
@@ -374,6 +526,22 @@
                 return codeMatch || nameMatch || catMatch;
             });
             displayProducts(filtered);
+        });
+
+        function openLightbox(imgSrc) {
+            document.getElementById('modalImage').src = imgSrc;
+            document.getElementById('imageModal').classList.remove('hidden');
+        }
+
+        document.getElementById('closeModalBtn').addEventListener('click', function() {
+            document.getElementById('imageModal').classList.add('hidden');
+        });
+
+        // મોડલની બહાર (કાળા ભાગ પર) ક્લિક કરવાથી પણ બંધ થઈ જશે
+        document.getElementById('imageModal').addEventListener('click', function(e) {
+            if(e.target === this) {
+                this.classList.add('hidden');
+            }
         });
     </script>
 </body>
