@@ -4,11 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Royal Art Gallery | Design Your Story</title>
-    <!-- Tailwind CSS ફોર સ્ટાઇલિંગ -->
+    
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome આઇકોન્સ માટે -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Noto+Sans+Gujarati:wght@400;600&display=swap" rel="stylesheet">
     
     <script>
@@ -29,15 +27,15 @@
         }
     </script>
     <style>
-        /* સ્મૂથ સ્ક્રોલિંગ માટે */
         html { scroll-behavior: smooth; }
         .product-card:hover .product-img { transform: scale(1.05); }
         .product-img { transition: transform 0.3s ease; }
+        /* આઉટ ઓફ સ્ટોક માટે સ્ટાઇલ */
+        .out-of-stock-overlay { background: rgba(255,255,255,0.7); backdrop-filter: blur(2px); }
     </style>
 </head>
 <body class="font-sans bg-gray-50 text-gray-800">
 
-    <!-- નેવિગેશન બાર (હેડર) -->
     <nav class="bg-royal-dark text-white sticky top-0 z-50 shadow-lg">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
@@ -74,10 +72,8 @@
         </div>
     </nav>
 
-    <!-- હીરો સેક્શન (મુખ્ય બેનર) -->
     <section id="home" class="relative bg-royal-dark text-white overflow-hidden">
         <div class="absolute inset-0 opacity-40">
-            <!-- બેકગ્રાઉન્ડ ઈમેજ (અહીં તમે તમારી દુકાનનો ફોટો લગાવી શકો છો) -->
             <img src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="Art Gallery Background" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/1920x800?text=Royal+Art+Gallery'">
         </div>
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 flex flex-col items-center text-center">
@@ -89,20 +85,17 @@
         </div>
     </section>
 
-    <!-- પ્રોડક્ટ્સ સેક્શન અને સર્ચ બાર -->
     <section id="products" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-10">
             <h2 class="text-3xl font-serif font-bold text-royal-dark mb-2">અમારી પ્રોડક્ટ્સ</h2>
             <div class="w-24 h-1 bg-royal-orange mx-auto"></div>
         </div>
 
-        <!-- સર્ચ બાર -->
         <div class="max-w-xl mx-auto mb-10 relative">
             <input type="text" id="searchInput" placeholder="પ્રોડક્ટ શોધો... (દા.ત. Code, Couple, Artefact)" class="w-full pl-12 pr-4 py-3 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-royal-orange focus:border-transparent shadow-sm text-lg">
             <i class="fas fa-search absolute left-5 top-4 text-gray-400 text-lg"></i>
         </div>
 
-        <!-- કેટેગરી ફિલ્ટર્સ -->
         <div class="flex flex-wrap justify-center gap-3 mb-12" id="categoryFilters">
             <button class="filter-btn active bg-royal-dark text-white px-5 py-2 rounded-full text-sm font-semibold shadow" data-filter="all">All (બધું)</button>
             <button class="filter-btn bg-white text-gray-700 border border-gray-300 px-5 py-2 rounded-full text-sm font-semibold hover:bg-gray-100 transition" data-filter="Artefact">Artefact</button>
@@ -111,23 +104,27 @@
             <button class="filter-btn bg-white text-gray-700 border border-gray-300 px-5 py-2 rounded-full text-sm font-semibold hover:bg-gray-100 transition" data-filter="Murti">Murti</button>
         </div>
 
-        <!-- પ્રોડક્ટ ગ્રીડ (JavaScript થી ડેટા આવશે) -->
+        <!-- પ્રોડક્ટ ગ્રીડ -->
         <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
             <!-- પ્રોડક્ટ્સ અહી લોડ થશે -->
         </div>
         
-        <!-- જો કોઈ પ્રોડક્ટ ન મળે ત્યારે મેસેજ -->
         <div id="noProductMsg" class="hidden text-center text-red-500 font-bold mt-8 text-xl">
             માફ કરશો, આ નામની કોઈ પ્રોડક્ટ મળી નથી.
         </div>
+
+        <!-- નવું: Load More બટન -->
+        <div class="text-center mt-12">
+            <button id="loadMoreBtn" class="hidden bg-royal-dark hover:bg-gray-800 text-white font-bold py-3 px-8 rounded-full transition shadow-lg">
+                વધુ પ્રોડક્ટ્સ જુઓ <i class="fas fa-angle-down ml-2"></i>
+            </button>
+        </div>
     </section>
 
-    <!-- એપોઇન્ટમેન્ટ અને પેમેન્ટ સેક્શન -->
     <section id="services" class="bg-gray-100 py-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
                 
-                <!-- એપોઇન્ટમેન્ટ બુકિંગ -->
                 <div class="bg-white p-8 rounded-2xl shadow-lg text-center border-t-4 border-royal-dark">
                     <div class="w-16 h-16 bg-royal-dark text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
                         <i class="far fa-calendar-check"></i>
@@ -139,16 +136,13 @@
                     </a>
                 </div>
 
-                <!-- ઓનલાઇન પેમેન્ટ (QR Code) -->
                 <div class="bg-white p-8 rounded-2xl shadow-lg text-center border-t-4 border-royal-orange">
                     <div class="w-16 h-16 bg-royal-orange text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
                         <i class="fas fa-qrcode"></i>
                     </div>
                     <h3 class="text-2xl font-serif font-bold mb-4">ઓનલાઇન પેમેન્ટ</h3>
                     <p class="text-gray-600 mb-4">ઓર્ડર કન્ફર્મ કરવા માટે નીચે આપેલ QR કોડ સ્કેન કરીને સુરક્ષિત પેમેન્ટ કરો.</p>
-                    
                     <div class="bg-gray-50 p-4 inline-block rounded-xl border-2 border-dashed border-gray-300">
-                        <!-- તમારો પેમેન્ટ QR કોડ અહીં મુકવો -->
                         <img src="qrcode.png" alt="Payment QR Code" class="w-40 h-40 mx-auto" onerror="this.src='https://via.placeholder.com/150?text=Upload+qrcode.png'">
                         <p class="text-sm font-bold text-gray-800 mt-2">UPI Accepted Here</p>
                     </div>
@@ -158,11 +152,8 @@
         </div>
     </section>
 
-    <!-- ફૂટર (Contact Info) -->
     <footer id="contact" class="bg-royal-dark text-gray-300 py-12 border-t-4 border-royal-gold">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8">
-            
-            <!-- કંપની ઇન્ફો -->
             <div>
                 <h3 class="text-2xl font-serif font-bold text-white mb-4"><span class="text-royal-orange">ROYAL</span> ART GALLERY</h3>
                 <p class="mb-4 text-sm">All Types of Imported Home Decoration Products under One Roof.</p>
@@ -176,7 +167,6 @@
                 </div>
             </div>
 
-            <!-- સંપર્ક વિગતો -->
             <div>
                 <h4 class="text-lg font-bold text-white mb-4 border-b border-gray-700 pb-2">સંપર્ક કરો (Contact Us)</h4>
                 <ul class="space-y-3">
@@ -195,7 +185,6 @@
                 </ul>
             </div>
 
-            <!-- ક્વિક લિંક્સ -->
             <div>
                 <h4 class="text-lg font-bold text-white mb-4 border-b border-gray-700 pb-2">ઝડપી લિંક્સ (Quick Links)</h4>
                 <ul class="space-y-2">
@@ -210,26 +199,22 @@
         </div>
     </footer>
 
-    <!-- મોટો ફોટો જોવા માટેનું મોડલ (Lightbox) -->
     <div id="imageModal" class="fixed inset-0 z-[100] hidden bg-black bg-opacity-90 flex items-center justify-center p-4 transition-opacity duration-300">
         <button id="closeModalBtn" class="absolute top-5 right-5 text-white text-5xl hover:text-royal-orange focus:outline-none">&times;</button>
         <img id="modalImage" src="" class="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl">
     </div>
 
-    <!-- JavaScript લોજીક -->
     <script>
-        // મોબાઈલ મેનુ ટોગલ
         document.getElementById('mobile-menu-btn').addEventListener('click', function() {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
+            document.getElementById('mobile-menu').classList.toggle('hidden');
         });
 
         const myWhatsAppNumber = "917607671571"; 
 
-        // ૫ કેટેલોગમાંથી કાઢવામાં આવેલી તમામ પ્રોડક્ટ્સ
         const productsData = [
             // CATALOG 1
-            { id: 1, code: "80869", name: "Meditation Lady Artefact", category: "Artefact", price: "₹4,000", size: "24X13X26 cm" },
+            // નોંધ: outOfStock: true લખવાથી પ્રોડક્ટ આઉટ ઓફ સ્ટોક દેખાશે.
+            { id: 1, code: "80869", name: "Meditation Lady Artefact", category: "Artefact", price: "₹4,000", size: "24X13X26 cm", outOfStock: true },
             { id: 2, code: "80870", name: "Meditation Lady (Red Shirt)", category: "Artefact", price: "₹4,000", size: "24X13X26 cm" },
             { id: 3, code: "80872", name: "Meditation Lady (Purple Shirt)", category: "Artefact", price: "₹4,000", size: "24X13X26 cm" },
             { id: 4, code: "80877", name: "Moon Meditation Artefact", category: "Artefact", price: "₹5,100", size: "29X11X23 cm" },
@@ -449,52 +434,81 @@
 
         const productGrid = document.getElementById('productGrid');
         const noProductMsg = document.getElementById('noProductMsg');
+        const loadMoreBtn = document.getElementById('loadMoreBtn');
+        
+        let displayedCount = 0;
+        const itemsPerLoad = 24;
+        let currentFilteredData = productsData;
 
-        function displayProducts(products) {
-            productGrid.innerHTML = ''; 
+        function renderProductsHTML(products) {
+            let html = '';
+            products.forEach(product => {
+                const imageName = product.code + '.png';
+                const sizeText = product.size ? `\n*Size:* ${product.size}` : '';
+                const waMessage = encodeURIComponent(`નમસ્તે, મારે આ પ્રોડક્ટ ખરીદવી છે:\n\n*Code:* ${product.code}\n*Product:* ${product.name}\n*Category:* ${product.category}${sizeText}\n*Price:* ${product.price}\n\nશું આ ઉપલબ્ધ છે?`);
+                const waLink = `https://wa.me/${myWhatsAppNumber}?text=${waMessage}`;
+                const sizeHtml = product.size ? `<p class="text-sm text-gray-500 mb-2"><i class="fas fa-ruler-combined mr-1 text-royal-orange"></i> Size: ${product.size}</p>` : '';
+                
+                // Out of Stock Logic
+                const isOutOfStock = product.outOfStock === true;
+                const overlayHtml = isOutOfStock ? `<div class="absolute inset-0 out-of-stock-overlay flex items-center justify-center z-20"><span class="bg-red-600 text-white font-bold py-1 px-4 rounded transform -rotate-12 text-lg border-2 border-white shadow-xl">OUT OF STOCK</span></div>` : '';
+                const buttonHtml = isOutOfStock ? 
+                    `<button disabled class="w-full block text-center bg-gray-400 text-white font-bold py-2 rounded cursor-not-allowed">Sold Out</button>` :
+                    `<a href="${waLink}" target="_blank" class="w-full block text-center bg-green-500 hover:bg-green-600 text-white font-bold py-2 rounded transition shadow"><i class="fab fa-whatsapp mr-1"></i> Buy Now</a>`;
+
+                html += `
+                    <div class="product-card bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 flex flex-col h-full relative">
+                        ${overlayHtml}
+                        <div class="h-64 overflow-hidden relative">
+                            <span class="absolute top-2 left-2 bg-royal-dark text-white text-xs font-bold px-2 py-1 rounded z-10 shadow">${product.category}</span>
+                            <!-- added loading="lazy" for fast speed -->
+                            <img loading="lazy" src="${imageName}" alt="${product.name}" class="product-img w-full h-full object-cover cursor-pointer" onclick="openLightbox('${imageName}')" title="ફોટો મોટો કરવા અહી ક્લિક કરો" onerror="this.src='https://via.placeholder.com/500?text=Upload+${imageName}'">
+                        </div>
+                        <div class="p-5 flex flex-col flex-grow">
+                            <p class="text-xs text-gray-400 font-bold mb-1 border-b border-gray-100 pb-1">CODE: ${product.code}</p>
+                            <h3 class="text-lg font-bold text-gray-800 mb-2 mt-2">${product.name}</h3>
+                            ${sizeHtml}
+                            <p class="text-royal-orange font-bold text-xl mb-4 mt-auto">${product.price}</p>
+                            ${buttonHtml}
+                        </div>
+                    </div>
+                `;
+            });
+            return html;
+        }
+
+        function displayProducts(reset = true) {
+            if (reset) {
+                productGrid.innerHTML = '';
+                displayedCount = 0;
+            }
             
-            if (products.length === 0) {
+            if (currentFilteredData.length === 0) {
                 noProductMsg.classList.remove('hidden');
+                loadMoreBtn.classList.add('hidden');
+                return;
             } else {
                 noProductMsg.classList.add('hidden');
-                products.forEach(product => {
-                    
-                    // --- AUTOMATIC IMAGE NAMING LOGIC ---
-                    const imageName = product.code + '.png';
-                    // ------------------------------------
+            }
 
-                    const sizeText = product.size ? `\n*Size:* ${product.size}` : '';
-                    const waMessage = encodeURIComponent(`નમસ્તે, મારે આ પ્રોડક્ટ ખરીદવી છે:\n\n*Code:* ${product.code}\n*Product:* ${product.name}\n*Category:* ${product.category}${sizeText}\n*Price:* ${product.price}\n\nશું આ ઉપલબ્ધ છે?`);
-                    const waLink = `https://wa.me/${myWhatsAppNumber}?text=${waMessage}`;
+            const toDisplay = currentFilteredData.slice(displayedCount, displayedCount + itemsPerLoad);
+            productGrid.innerHTML += renderProductsHTML(toDisplay);
+            displayedCount += toDisplay.length;
 
-                    const sizeHtml = product.size ? `<p class="text-sm text-gray-500 mb-2"><i class="fas fa-ruler-combined mr-1 text-royal-orange"></i> Size: ${product.size}</p>` : '';
-
-                    const card = `
-                        <div class="product-card bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 flex flex-col h-full">
-                            <div class="h-64 overflow-hidden relative">
-                                <span class="absolute top-2 left-2 bg-royal-dark text-white text-xs font-bold px-2 py-1 rounded z-10">${product.category}</span>
-                                <img src="${imageName}" alt="${product.name}" class="product-img w-full h-full object-cover cursor-pointer" onclick="openLightbox('${imageName}')" title="ફોટો મોટો કરવા અહી ક્લિક કરો" onerror="this.src='https://via.placeholder.com/500?text=Upload+${imageName}'">
-                            </div>
-                            <div class="p-5 flex flex-col flex-grow">
-                                <p class="text-xs text-gray-400 font-bold mb-1 border-b border-gray-100 pb-1">CODE: ${product.code}</p>
-                                <h3 class="text-lg font-bold text-gray-800 mb-2 mt-2">${product.name}</h3>
-                                ${sizeHtml}
-                                <p class="text-royal-orange font-bold text-xl mb-4 mt-auto">${product.price}</p>
-                                <a href="${waLink}" target="_blank" class="w-full block text-center bg-green-500 hover:bg-green-600 text-white font-bold py-2 rounded transition">
-                                    <i class="fab fa-whatsapp mr-1"></i> Buy Now
-                                </a>
-                            </div>
-                        </div>
-                    `;
-                    productGrid.innerHTML += card;
-                });
+            if (displayedCount >= currentFilteredData.length) {
+                loadMoreBtn.classList.add('hidden');
+            } else {
+                loadMoreBtn.classList.remove('hidden');
             }
         }
 
-        // પેજ લોડ થાય ત્યારે બધી પ્રોડક્ટ્સ બતાવો
-        displayProducts(productsData);
+        loadMoreBtn.addEventListener('click', () => {
+            displayProducts(false);
+        });
 
-        // કેટેગરી ફિલ્ટર લોજીક
+        // પેજ લોડ થાય ત્યારે
+        displayProducts(true);
+
         const filterBtns = document.querySelectorAll('.filter-btn');
         filterBtns.forEach(btn => {
             btn.addEventListener('click', () => {
@@ -507,25 +521,24 @@
 
                 const category = btn.getAttribute('data-filter');
                 if (category === 'all') {
-                    displayProducts(productsData);
+                    currentFilteredData = productsData;
                 } else {
-                    const filtered = productsData.filter(p => p.category === category);
-                    displayProducts(filtered);
+                    currentFilteredData = productsData.filter(p => p.category === category);
                 }
+                displayProducts(true);
             });
         });
 
-        // સર્ચ બાર લોજીક (Code અથવા નામથી શોધવા માટે)
         const searchInput = document.getElementById('searchInput');
         searchInput.addEventListener('input', (e) => {
-            const searchTerm = e.target.value.toLowerCase().replace(/[^a-z0-9]/g, ''); // સ્પેસ કાઢીને સર્ચ કરશે
-            const filtered = productsData.filter(p => {
+            const searchTerm = e.target.value.toLowerCase().replace(/[^a-z0-9]/g, '');
+            currentFilteredData = productsData.filter(p => {
                 const codeMatch = p.code.toLowerCase().replace(/[^a-z0-9]/g, '').includes(searchTerm);
                 const nameMatch = p.name.toLowerCase().replace(/[^a-z0-9]/g, '').includes(searchTerm);
                 const catMatch = p.category.toLowerCase().replace(/[^a-z0-9]/g, '').includes(searchTerm);
                 return codeMatch || nameMatch || catMatch;
             });
-            displayProducts(filtered);
+            displayProducts(true);
         });
 
         function openLightbox(imgSrc) {
@@ -537,7 +550,6 @@
             document.getElementById('imageModal').classList.add('hidden');
         });
 
-        // મોડલની બહાર (કાળા ભાગ પર) ક્લિક કરવાથી પણ બંધ થઈ જશે
         document.getElementById('imageModal').addEventListener('click', function(e) {
             if(e.target === this) {
                 this.classList.add('hidden');
